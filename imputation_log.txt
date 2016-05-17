@@ -1,0 +1,406 @@
+2016-05-17 00:23:21
+
+Imputation  Log summary for N+1 studies
+
+--------------------------------------------------
+  CHECKING STUDY:    RAYNER, BALOTA, & POLLATSEK (1986)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 62 studies (62 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition UNREL
+         Pooling from 24 studies (24 Ns) with mask UNREL 
+         New imputed value: 63.7996103808165
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 14 studies (14 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure FFD, preview condition SEM
+         Pooling from 7 studies (7 Ns) with mask SEM 
+         New imputed value: 56.3726278305675
+  Missing variance for: measure GD, preview condition val
+         Pooling from 66 studies (66 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition UNREL
+         Pooling from 27 studies (27 Ns) with mask UNREL 
+         New imputed value: 92.4337874089443
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 15 studies (15 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+  Missing variance for: measure GD, preview condition SEM
+         Pooling from 10 studies (10 Ns) with mask SEM 
+         New imputed value: 77.3542934822156
+--------------------------------------------------
+  CHECKING STUDY:    WINSKEL & SALEHUDDIN (2014)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 63 studies (63 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition X
+         Pooling from 3 studies (3 Ns) with mask X 
+         New imputed value: 44.4415967578581
+  Missing variance for: measure GD, preview condition val
+         Pooling from 67 studies (67 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition X
+         Pooling from 3 studies (3 Ns) with mask X 
+         New imputed value: 59.6883223159734
+--------------------------------------------------
+  CHECKING STUDY:    LIMA (1987)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 64 studies (64 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition X
+         Pooling from 4 studies (4 Ns) with mask X 
+         New imputed value: 44.4415967578581
+  Missing variance for: measure GD, preview condition val
+         Pooling from 68 studies (68 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition X
+         Pooling from 4 studies (4 Ns) with mask X 
+         New imputed value: 59.6883223159734
+--------------------------------------------------
+  CHECKING STUDY:    LIMA (1987), EXP.2
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 65 studies (65 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition RAN
+         Pooling from 21 studies (21 Ns) with mask RAN 
+         New imputed value: 70.5725626360946
+  Missing variance for: measure GD, preview condition val
+         Pooling from 69 studies (69 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition RAN
+         Pooling from 21 studies (21 Ns) with mask RAN 
+         New imputed value: 89.7742300789075
+--------------------------------------------------
+  CHECKING STUDY:    BALOTA, POLLATSEK, & RAYNER (1985)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 66 studies (66 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition UNREL
+         Pooling from 25 studies (25 Ns) with mask UNREL 
+         New imputed value: 63.7996103808165
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 15 studies (15 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure GD, preview condition val
+         Pooling from 70 studies (70 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition UNREL
+         Pooling from 28 studies (28 Ns) with mask UNREL 
+         New imputed value: 92.4337874089443
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 16 studies (16 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+--------------------------------------------------
+  CHECKING STUDY:    JOHNSON, PEREA, & RAYNER (2007)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 67 studies (67 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 16 studies (16 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure SFD, preview condition val
+         Pooling from 36 studies (36 Ns) with mask val 
+         New imputed value: 48.852352391324
+  Missing variance for: measure SFD, preview condition ORTH
+         Pooling from 11 studies (11 Ns) with mask ORTH 
+         New imputed value: 46.9916273823481
+  Missing variance for: measure GD, preview condition val
+         Pooling from 71 studies (71 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 17 studies (17 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+--------------------------------------------------
+  CHECKING STUDY:    JOHNSON, PEREA, & RAYNER (2007), EXP.2
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 68 studies (68 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 17 studies (17 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure SFD, preview condition val
+         Pooling from 37 studies (37 Ns) with mask val 
+         New imputed value: 48.852352391324
+  Missing variance for: measure SFD, preview condition ORTH
+         Pooling from 12 studies (12 Ns) with mask ORTH 
+         New imputed value: 46.9916273823481
+  Missing variance for: measure GD, preview condition val
+         Pooling from 72 studies (72 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 18 studies (18 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+--------------------------------------------------
+  CHECKING STUDY:    JOHNSON, PEREA, & RAYNER (2007), EXP.3
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 69 studies (69 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 18 studies (18 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure SFD, preview condition val
+         Pooling from 38 studies (38 Ns) with mask val 
+         New imputed value: 48.852352391324
+  Missing variance for: measure SFD, preview condition ORTH
+         Pooling from 13 studies (13 Ns) with mask ORTH 
+         New imputed value: 46.9916273823481
+  Missing variance for: measure GD, preview condition val
+         Pooling from 73 studies (73 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 19 studies (19 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+--------------------------------------------------
+  CHECKING STUDY:    POLLATSEK, LESCH, MORRIS, & RAYNER (1992), EXP. 2
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 70 studies (70 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition UNREL
+         Pooling from 26 studies (26 Ns) with mask UNREL 
+         New imputed value: 63.7996103808165
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 19 studies (19 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure FFD, preview condition PHON
+         Pooling from 6 studies (6 Ns) with mask PHON 
+         New imputed value: 55.8801113515372
+  Missing variance for: measure GD, preview condition val
+         Pooling from 74 studies (74 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition UNREL
+         Pooling from 29 studies (29 Ns) with mask UNREL 
+         New imputed value: 92.4337874089443
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 20 studies (20 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+  Missing variance for: measure GD, preview condition PHON
+         Pooling from 7 studies (7 Ns) with mask PHON 
+         New imputed value: 91.4602713993592
+--------------------------------------------------
+  CHECKING STUDY:    MIELLET & SPARROW (2004)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 71 studies (71 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition PHON
+         Pooling from 7 studies (7 Ns) with mask PHON 
+         New imputed value: 55.8801113515372
+  Missing variance for: measure GD, preview condition val
+         Pooling from 75 studies (75 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition PHON
+         Pooling from 8 studies (8 Ns) with mask PHON 
+         New imputed value: 91.4602713993592
+--------------------------------------------------
+  CHECKING STUDY:    BINDER, POLLATSEK, & RAYNER (1999)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 72 studies (72 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition UNREL
+         Pooling from 27 studies (27 Ns) with mask UNREL 
+         New imputed value: 63.7996103808165
+  Missing variance for: measure GD, preview condition val
+         Pooling from 76 studies (76 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition UNREL
+         Pooling from 30 studies (30 Ns) with mask UNREL 
+         New imputed value: 92.4337874089443
+--------------------------------------------------
+  CHECKING STUDY:    HENDERSON & FERREIRA (1990)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 73 studies (73 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition RAN
+         Pooling from 22 studies (22 Ns) with mask RAN 
+         New imputed value: 70.5725626360946
+  Missing variance for: measure GD, preview condition val
+         Pooling from 77 studies (77 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition RAN
+         Pooling from 22 studies (22 Ns) with mask RAN 
+         New imputed value: 89.7742300789075
+--------------------------------------------------
+  CHECKING STUDY:    SERENO & RAYNER (2000)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 74 studies (74 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition RAN
+         Pooling from 23 studies (23 Ns) with mask RAN 
+         New imputed value: 70.5725626360946
+  Missing variance for: measure GD, preview condition val
+         Pooling from 78 studies (78 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition RAN
+         Pooling from 23 studies (23 Ns) with mask RAN 
+         New imputed value: 89.7742300789075
+--------------------------------------------------
+  CHECKING STUDY:    KENNISON & CLIFTON (1995)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 75 studies (75 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition RAN
+         Pooling from 24 studies (24 Ns) with mask RAN 
+         New imputed value: 70.5725626360946
+  Missing variance for: measure GD, preview condition val
+         Pooling from 79 studies (79 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition RAN
+         Pooling from 24 studies (24 Ns) with mask RAN 
+         New imputed value: 89.7742300789075
+--------------------------------------------------
+  CHECKING STUDY:    MASSERANG & POLLATSEK (2012)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 76 studies (76 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 20 studies (20 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure GD, preview condition val
+         Pooling from 80 studies (80 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 21 studies (21 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+  Missing variance for: measure Total, preview condition val
+         Pooling from 25 studies (25 Ns) with mask val 
+         New imputed value: 98.5496361755119
+  Missing variance for: measure Total, preview condition ORTH
+         Pooling from 6 studies (6 Ns) with mask ORTH 
+         New imputed value: 91.7774468148491
+--------------------------------------------------
+  CHECKING STUDY:    MASSERANG & POLLATSEK (2012), EXP.2
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 77 studies (77 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 21 studies (21 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure GD, preview condition val
+         Pooling from 81 studies (81 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 22 studies (22 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+  Missing variance for: measure Total, preview condition val
+         Pooling from 26 studies (26 Ns) with mask val 
+         New imputed value: 98.5496361755119
+  Missing variance for: measure Total, preview condition ORTH
+         Pooling from 7 studies (7 Ns) with mask ORTH 
+         New imputed value: 91.7774468148491
+--------------------------------------------------
+  CHECKING STUDY:    KAMBE (2004)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 78 studies (78 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition RAN
+         Pooling from 25 studies (25 Ns) with mask RAN 
+         New imputed value: 70.5725626360946
+  Missing variance for: measure GD, preview condition val
+         Pooling from 82 studies (82 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition RAN
+         Pooling from 25 studies (25 Ns) with mask RAN 
+         New imputed value: 89.7742300789075
+--------------------------------------------------
+  CHECKING STUDY:    KAMBE (2004), EXP.2
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 79 studies (79 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition X
+         Pooling from 5 studies (5 Ns) with mask X 
+         New imputed value: 44.4415967578581
+  Missing variance for: measure GD, preview condition val
+         Pooling from 83 studies (83 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition X
+         Pooling from 5 studies (5 Ns) with mask X 
+         New imputed value: 59.6883223159734
+--------------------------------------------------
+  CHECKING STUDY:    WAKEFORD & MURRAY (N.D)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 80 studies (80 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition UNREL
+         Pooling from 28 studies (28 Ns) with mask UNREL 
+         New imputed value: 63.7996103808165
+  Missing variance for: measure GD, preview condition val
+         Pooling from 84 studies (84 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition UNREL
+         Pooling from 31 studies (31 Ns) with mask UNREL 
+         New imputed value: 92.4337874089443
+--------------------------------------------------
+  CHECKING STUDY:    WINSKEL (2011)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 81 studies (81 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 22 studies (22 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure FFD, preview condition PHON
+         Pooling from 8 studies (8 Ns) with mask PHON 
+         New imputed value: 55.8801113515372
+  Missing variance for: measure GD, preview condition val
+         Pooling from 85 studies (85 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 23 studies (23 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
+  Missing variance for: measure GD, preview condition PHON
+         Pooling from 9 studies (9 Ns) with mask PHON 
+         New imputed value: 91.4602713993592
+--------------------------------------------------
+  CHECKING STUDY:    DRIEGHE, RAYNER, & POLLATSEK (2005)
+
+  Missing variance for: measure SFD, preview condition val
+         Pooling from 39 studies (39 Ns) with mask val 
+         New imputed value: 48.852352391324
+  Missing variance for: measure SFD, preview condition RAN
+         Pooling from 9 studies (9 Ns) with mask RAN 
+         New imputed value: 77.0582316728615
+  Missing variance for: measure SFD, preview condition UNREL
+         Pooling from 16 studies (16 Ns) with mask UNREL 
+         New imputed value: 61.7390291620305
+  Missing variance for: measure SFD, preview condition ORTH
+         Pooling from 14 studies (14 Ns) with mask ORTH 
+         New imputed value: 46.9916273823481
+--------------------------------------------------
+  CHECKING STUDY:    WINSKEL & PEREA (2013)
+
+  Missing variance for: measure FFD, preview condition val
+         Pooling from 82 studies (82 Ns) with mask val 
+         New imputed value: 50.9402241345084
+  Missing variance for: measure FFD, preview condition ORTH
+         Pooling from 23 studies (23 Ns) with mask ORTH 
+         New imputed value: 45.853838337947
+  Missing variance for: measure SFD, preview condition val
+         Pooling from 40 studies (40 Ns) with mask val 
+         New imputed value: 48.852352391324
+  Missing variance for: measure SFD, preview condition ORTH
+         Pooling from 15 studies (15 Ns) with mask ORTH 
+         New imputed value: 46.9916273823481
+  Missing variance for: measure GD, preview condition val
+         Pooling from 86 studies (86 Ns) with mask val 
+         New imputed value: 69.9805972132005
+  Missing variance for: measure GD, preview condition ORTH
+         Pooling from 24 studies (24 Ns) with mask ORTH 
+         New imputed value: 69.7927291237106
