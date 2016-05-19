@@ -1,5 +1,5 @@
 ---
-title: "model sensitivity analysis[N+2]"
+title: "Model sensitivity analysis [N+2]"
 author: "Martin R. Vasilev"
 date: "May 18, 2016"
 output: html_document
@@ -7,10 +7,12 @@ output: html_document
 
 ```{r, echo=FALSE}
 load('Summaries/N2/sum1.Rda'); load('Summaries/N2/sum1_3.Rda');load('Summaries/N2/sum1_4.Rda')
-load('Summaries/N2/sum1_5.Rda'); load('Summaries/N2/sum2.Rda'); load('Summaries/N2/sum2_3.Rda')
-load('Summaries/N2/sum2_4.Rda'); load('Summaries/N2/sum2_5.Rda'); load('Summaries/N2/sum3.Rda')
-load('Summaries/N2/sum3_3.Rda'); load('Summaries/N2/sum3_4.Rda'); load('Summaries/N2/sum3_5.Rda')
-load('Summaries/N2/sum4.Rda'); load('Summaries/N2/sum4_3.Rda'); load('Summaries/N2/sum4_4.Rda'); load('Summaries/N2/sum4_5.Rda'); load('Summaries/N2/sum5.Rda');load('Summaries/N2/sum5_3.Rda'); load('Summaries/N2/sum5_4.Rda'); load('Summaries/N2/sum5_5.Rda'); load('Summaries/N2/sum6.Rda'); load('Summaries/N2/sum6_3.Rda'); load('Summaries/N2/sum6_4.Rda'); load('Summaries/N2/sum6_5.Rda')
+load('Summaries/N2/sum1_5.Rda'); load('Summaries/N2/sum1_6.Rda'); load('Summaries/N2/sum1_7.Rda'); 
+load('Summaries/N2/sum2.Rda'); load('Summaries/N2/sum2_3.Rda'); load('Summaries/N2/sum2_4.Rda'); load('Summaries/N2/sum2_5.Rda'); load('Summaries/N2/sum2_6.Rda'); load('Summaries/N2/sum2_7.Rda')
+load('Summaries/N2/sum3.Rda'); load('Summaries/N2/sum3_3.Rda'); load('Summaries/N2/sum3_4.Rda'); load('Summaries/N2/sum3_5.Rda'); load('Summaries/N2/sum3_6.Rda');load('Summaries/N2/sum3_7.Rda');
+load('Summaries/N2/sum4.Rda'); load('Summaries/N2/sum4_3.Rda'); load('Summaries/N2/sum4_4.Rda'); load('Summaries/N2/sum4_5.Rda'); load('Summaries/N2/sum4_6.Rda'); load('Summaries/N2/sum4_7.Rda')
+load('Summaries/N2/sum5.Rda'); load('Summaries/N2/sum5_3.Rda'); load('Summaries/N2/sum5_4.Rda'); load('Summaries/N2/sum5_5.Rda'); load('Summaries/N2/sum5_6.Rda'); load('Summaries/N2/sum5_7.Rda')
+load('Summaries/N2/sum6.Rda'); load('Summaries/N2/sum6_3.Rda'); load('Summaries/N2/sum6_4.Rda'); load('Summaries/N2/sum6_5.Rda'); load('Summaries/N2/sum6_6.Rda'); load('Summaries/N2/sum6_7.Rda')
 ```
 
 ```{r, echo=FALSE}
@@ -27,6 +29,11 @@ Tau3= round(sum1_4$statistics[2,1],2); Tau3_SD= round(sum1_4$statistics[2,2],2);
 Mu4= round(sum1_5$statistics[1,1],2); Mu4_SD= round(sum1_5$statistics[1,2],2);Mu4CI= round(c(sum1_5$quantiles[1,1], sum1_5$quantiles[1,5]) ,2); Mu4CI<- paste(Mu4CI[1], ", ", Mu4CI[2], sep="")
 Tau4= round(sum1_5$statistics[2,1],2); Tau4_SD= round(sum1_5$statistics[2,2],2);Tau4CI= round(c(sum1_5$quantiles[2,1], sum1_5$quantiles[2,5]) ,2); Tau4CI<- paste(Tau4CI[1], ", ", Tau4CI[2], sep="")
 
+Mu5= round(sum1_6$statistics[1,1],2); Mu5_SD= round(sum1_6$statistics[1,2],2);Mu5CI= round(c(sum1_6$quantiles[1,1], sum1_6$quantiles[1,5]) ,2); Mu5CI<- paste(Mu5CI[1], ", ", Mu5CI[2], sep="")
+Tau5= round(sum1_6$statistics[2,1],2); Tau5_SD= round(sum1_6$statistics[2,2],2);Tau5CI= round(c(sum1_6$quantiles[2,1], sum1_6$quantiles[2,5]) ,2); Tau5CI<- paste(Tau5CI[1], ", ", Tau5CI[2], sep="")
+
+Mu5_2= round(sum1_7$statistics[1,1],2); Mu5_2_SD= round(sum1_7$statistics[1,2],2);Mu5_2CI= round(c(sum1_7$quantiles[1,1], sum1_7$quantiles[1,5]) ,2); Mu5_2CI<- paste(Mu5_2CI[1], ", ", Mu5_2CI[2], sep="")
+Tau5_2= round(sum1_7$statistics[2,1],2); Tau5_2_SD= round(sum1_7$statistics[2,2],2);Tau5_2CI= round(c(sum1_7$quantiles[2,1], sum1_7$quantiles[2,5]) ,2); Tau5_2CI<- paste(Tau5_2CI[1], ", ", Tau5_2CI[2], sep="")
 
 Mu6= round(sum2$statistics[1,1],2); Mu6_SD= round(sum2$statistics[1,2],2);Mu6CI= round(c(sum2$quantiles[1,1], sum2$quantiles[1,5]) ,2); Mu6CI<- paste(Mu6CI[1], ", ", Mu6CI[2], sep="")
 Tau6= round(sum2$statistics[2,1],2); Tau6_SD= round(sum2$statistics[2,2],2);Tau6CI= round(c(sum2$quantiles[2,1], sum2$quantiles[2,5]) ,2); Tau6CI<- paste(Tau6CI[1], ", ", Tau6CI[2], sep="")
@@ -40,6 +47,12 @@ Tau8= round(sum2_4$statistics[2,1],2); Tau8_SD= round(sum2_4$statistics[2,2],2);
 Mu9= round(sum2_5$statistics[1,1],2); Mu9_SD= round(sum2_5$statistics[1,2],2);Mu9CI= round(c(sum2_5$quantiles[1,1], sum2_5$quantiles[1,5]) ,2); Mu9CI<- paste(Mu9CI[1], ", ", Mu9CI[2], sep="")
 Tau9= round(sum2_5$statistics[2,1],2); Tau9_SD= round(sum2_5$statistics[2,2],2);Tau9CI= round(c(sum2_5$quantiles[2,1], sum2_5$quantiles[2,5]) ,2); Tau9CI<- paste(Tau9CI[1], ", ", Tau9CI[2], sep="")
 
+Mu10= round(sum2_6$statistics[1,1],2); Mu10_SD= round(sum2_6$statistics[1,2],2);Mu10CI= round(c(sum2_6$quantiles[1,1], sum2_6$quantiles[1,5]) ,2); Mu10CI<- paste(Mu10CI[1], ", ", Mu10CI[2], sep="")
+Tau10= round(sum2_6$statistics[2,1],2); Tau10_SD= round(sum2_6$statistics[2,2],2);Tau10CI= round(c(sum2_6$quantiles[2,1], sum2_6$quantiles[2,5]) ,2); Tau10CI<- paste(Tau10CI[1], ", ", Tau10CI[2], sep="")
+
+Mu10_2= round(sum2_7$statistics[1,1],2); Mu10_2_SD= round(sum2_7$statistics[1,2],2);Mu10_2CI= round(c(sum2_7$quantiles[1,1], sum2_7$quantiles[1,5]) ,2); Mu10_2CI<- paste(Mu10_2CI[1], ", ", Mu10_2CI[2], sep="")
+Tau10_2= round(sum2_7$statistics[2,1],2); Tau10_2_SD= round(sum2_7$statistics[2,2],2);Tau10_2CI= round(c(sum2_7$quantiles[2,1], sum2_7$quantiles[2,5]) ,2); Tau10_2CI<- paste(Tau10_2CI[1], ", ", Tau10_2CI[2], sep="")
+
 Mu11= round(sum3$statistics[1,1],2); Mu11_SD= round(sum3$statistics[1,2],2);Mu11CI= round(c(sum3$quantiles[1,1], sum3$quantiles[1,5]) ,2); Mu11CI<- paste(Mu11CI[1], ", ", Mu11CI[2], sep="")
 Tau11= round(sum3$statistics[2,1],2); Tau11_SD= round(sum3$statistics[2,2],2);Tau11CI= round(c(sum3$quantiles[2,1], sum3$quantiles[2,5]) ,2); Tau11CI<- paste(Tau11CI[1], ", ", Tau11CI[2], sep="")
 
@@ -51,6 +64,12 @@ Tau13= round(sum3_4$statistics[2,1],2); Tau13_SD= round(sum3_4$statistics[2,2],2
 
 Mu14= round(sum3_5$statistics[1,1],2); Mu14_SD= round(sum3_5$statistics[1,2],2);Mu14CI= round(c(sum3_5$quantiles[1,1], sum3_5$quantiles[1,5]) ,2); Mu14CI<- paste(Mu14CI[1], ", ", Mu14CI[2], sep="")
 Tau14= round(sum3_5$statistics[2,1],2); Tau14_SD= round(sum3_5$statistics[2,2],2);Tau14CI= round(c(sum3_5$quantiles[2,1], sum3_5$quantiles[2,5]) ,2); Tau14CI<- paste(Tau14CI[1], ", ", Tau14CI[2], sep="")
+
+Mu15= round(sum3_6$statistics[1,1],2); Mu15_SD= round(sum3_6$statistics[1,2],2);Mu15CI= round(c(sum3_6$quantiles[1,1], sum3_6$quantiles[1,5]) ,2); Mu15CI<- paste(Mu15CI[1], ", ", Mu15CI[2], sep="")
+Tau15= round(sum3_6$statistics[2,1],2); Tau15_SD= round(sum3_6$statistics[2,2],2);Tau15CI= round(c(sum3_6$quantiles[2,1], sum3_6$quantiles[2,5]) ,2); Tau15CI<- paste(Tau15CI[1], ", ", Tau15CI[2], sep="")
+
+Mu15_2= round(sum3_7$statistics[1,1],2); Mu15_2_SD= round(sum3_7$statistics[1,2],2);Mu15_2CI= round(c(sum3_7$quantiles[1,1], sum3_7$quantiles[1,5]) ,2); Mu15_2CI<- paste(Mu15_2CI[1], ", ", Mu15_2CI[2], sep="")
+Tau15_2= round(sum3_7$statistics[2,1],2); Tau15_2_SD= round(sum3_7$statistics[2,2],2);Tau15_2CI= round(c(sum3_7$quantiles[2,1], sum3_7$quantiles[2,5]) ,2); Tau15_2CI<- paste(Tau15_2CI[1], ", ", Tau15_2CI[2], sep="")
 
 Mu16= round(sum4$statistics[1,1],2); Mu16_SD= round(sum4$statistics[1,2],2);Mu16CI= round(c(sum4$quantiles[1,1], sum4$quantiles[1,5]) ,2); Mu16CI<- paste(Mu16CI[1], ", ", Mu16CI[2], sep="")
 Tau16= round(sum4$statistics[2,1],2); Tau16_SD= round(sum4$statistics[2,2],2);Tau16CI= round(c(sum4$quantiles[2,1], sum4$quantiles[2,5]) ,2); Tau16CI<- paste(Tau16CI[1], ", ", Tau16CI[2], sep="")
@@ -64,6 +83,12 @@ Tau18= round(sum4_4$statistics[2,1],2); Tau18_SD= round(sum4_4$statistics[2,2],2
 Mu19= round(sum4_5$statistics[1,1],2); Mu19_SD= round(sum4_5$statistics[1,2],2);Mu19CI= round(c(sum4_5$quantiles[1,1], sum4_5$quantiles[1,5]) ,2); Mu19CI<- paste(Mu19CI[1], ", ", Mu19CI[2], sep="")
 Tau19= round(sum4_5$statistics[2,1],2); Tau19_SD= round(sum4_5$statistics[2,2],2);Tau19CI= round(c(sum4_5$quantiles[2,1], sum4_5$quantiles[2,5]) ,2); Tau19CI<- paste(Tau19CI[1], ", ", Tau19CI[2], sep="")
 
+Mu20= round(sum4_6$statistics[1,1],2); Mu20_SD= round(sum4_6$statistics[1,2],2);Mu20CI= round(c(sum4_6$quantiles[1,1], sum4_6$quantiles[1,5]) ,2); Mu20CI<- paste(Mu20CI[1], ", ", Mu20CI[2], sep="")
+Tau20= round(sum4_6$statistics[2,1],2); Tau20_SD= round(sum4_6$statistics[2,2],2);Tau20CI= round(c(sum4_6$quantiles[2,1], sum4_6$quantiles[2,5]) ,2); Tau20CI<- paste(Tau20CI[1], ", ", Tau20CI[2], sep="")
+
+Mu20_2= round(sum4_7$statistics[1,1],2); Mu20_2_SD= round(sum4_7$statistics[1,2],2);Mu20_2CI= round(c(sum4_7$quantiles[1,1], sum4_7$quantiles[1,5]) ,2); Mu20_2CI<- paste(Mu20_2CI[1], ", ", Mu20_2CI[2], sep="")
+Tau20_2= round(sum4_7$statistics[2,1],2); Tau20_2_SD= round(sum4_7$statistics[2,2],2);Tau20_2CI= round(c(sum4_7$quantiles[2,1], sum4_7$quantiles[2,5]) ,2); Tau20_2CI<- paste(Tau20_2CI[1], ", ", Tau20_2CI[2], sep="")
+
 Mu21= round(sum5$statistics[1,1],2); Mu21_SD= round(sum5$statistics[1,2],2);Mu21CI= round(c(sum5$quantiles[1,1], sum5$quantiles[1,5]) ,2); Mu21CI<- paste(Mu21CI[1], ", ", Mu21CI[2], sep="")
 Tau21= round(sum5$statistics[2,1],2); Tau21_SD= round(sum5$statistics[2,2],2);Tau21CI= round(c(sum5$quantiles[2,1], sum5$quantiles[2,5]) ,2); Tau21CI<- paste(Tau21CI[1], ", ", Tau21CI[2], sep="")
 
@@ -76,6 +101,12 @@ Tau23= round(sum5_4$statistics[2,1],2); Tau23_SD= round(sum5_4$statistics[2,2],2
 Mu24= round(sum5_5$statistics[1,1],2); Mu24_SD= round(sum5_5$statistics[1,2],2);Mu24CI= round(c(sum5_5$quantiles[1,1], sum5_5$quantiles[1,5]) ,2); Mu24CI<- paste(Mu24CI[1], ", ", Mu24CI[2], sep="")
 Tau24= round(sum5_5$statistics[2,1],2); Tau24_SD= round(sum5_5$statistics[2,2],2);Tau24CI= round(c(sum5_5$quantiles[2,1], sum5_5$quantiles[2,5]) ,2); Tau24CI<- paste(Tau24CI[1], ", ", Tau24CI[2], sep="")
 
+Mu25= round(sum5_6$statistics[1,1],2); Mu25_SD= round(sum5_6$statistics[1,2],2);Mu25CI= round(c(sum5_6$quantiles[1,1], sum5_6$quantiles[1,5]) ,2); Mu25CI<- paste(Mu25CI[1], ", ", Mu25CI[2], sep="")
+Tau25= round(sum5_6$statistics[2,1],2); Tau25_SD= round(sum5_6$statistics[2,2],2);Tau25CI= round(c(sum5_6$quantiles[2,1], sum5_6$quantiles[2,5]) ,2); Tau25CI<- paste(Tau25CI[1], ", ", Tau25CI[2], sep="")
+
+Mu25_2= round(sum5_7$statistics[1,1],2); Mu25_2_SD= round(sum5_7$statistics[1,2],2);Mu25_2CI= round(c(sum5_7$quantiles[1,1], sum5_7$quantiles[1,5]) ,2); Mu25_2CI<- paste(Mu25_2CI[1], ", ", Mu25_2CI[2], sep="")
+Tau25_2= round(sum5_7$statistics[2,1],2); Tau25_2_SD= round(sum5_7$statistics[2,2],2);Tau25_2CI= round(c(sum5_7$quantiles[2,1], sum5_7$quantiles[2,5]) ,2); Tau25_2CI<- paste(Tau25_2CI[1], ", ", Tau25_2CI[2], sep="")
+
 Mu26= round(sum6$statistics[1,1],2); Mu26_SD= round(sum6$statistics[1,2],2);Mu26CI= round(c(sum6$quantiles[1,1], sum6$quantiles[1,5]) ,2); Mu26CI<- paste(Mu26CI[1], ", ", Mu26CI[2], sep="")
 Tau26= round(sum6$statistics[2,1],2); Tau26_SD= round(sum6$statistics[2,2],2);Tau26CI= round(c(sum6$quantiles[2,1], sum6$quantiles[2,5]) ,2); Tau26CI<- paste(Tau26CI[1], ", ", Tau26CI[2], sep="")
 
@@ -87,16 +118,24 @@ Tau28= round(sum6_4$statistics[2,1],2); Tau28_SD= round(sum6_4$statistics[2,2],2
 
 Mu29= round(sum6_5$statistics[1,1],2); Mu29_SD= round(sum6_5$statistics[1,2],2);Mu29CI= round(c(sum6_5$quantiles[1,1], sum6_5$quantiles[1,5]) ,2); Mu29CI<- paste(Mu29CI[1], ", ", Mu29CI[2], sep="")
 Tau29= round(sum6_5$statistics[2,1],2); Tau29_SD= round(sum6_5$statistics[2,2],2);Tau29CI= round(c(sum6_5$quantiles[2,1], sum6_5$quantiles[2,5]) ,2); Tau29CI<- paste(Tau29CI[1], ", ", Tau29CI[2], sep="")
+
+Mu30= round(sum6_6$statistics[1,1],2); Mu30_SD= round(sum6_6$statistics[1,2],2);Mu30CI= round(c(sum6_6$quantiles[1,1], sum6_6$quantiles[1,5]) ,2); Mu30CI<- paste(Mu30CI[1], ", ", Mu30CI[2], sep="")
+Tau30= round(sum6_6$statistics[2,1],2); Tau30_SD= round(sum6_6$statistics[2,2],2);Tau30CI= round(c(sum6_6$quantiles[2,1], sum6_6$quantiles[2,5]) ,2); Tau30CI<- paste(Tau30CI[1], ", ", Tau30CI[2], sep="")
+
+Mu30_2= round(sum6_7$statistics[1,1],2); Mu30_2_SD= round(sum6_7$statistics[1,2],2);Mu30_2CI= round(c(sum6_7$quantiles[1,1], sum6_7$quantiles[1,5]) ,2); Mu30_2CI<- paste(Mu30_2CI[1], ", ", Mu30_2CI[2], sep="")
+Tau30_2= round(sum6_7$statistics[2,1],2); Tau30_2_SD= round(sum6_7$statistics[2,2],2);Tau30_2CI= round(c(sum6_7$quantiles[2,1], sum6_7$quantiles[2,5]) ,2); Tau30_2CI<- paste(Tau30_2CI[1], ", ", Tau30_2CI[2], sep="")
 ```
 
 N+2 preview effects on word N+2 for all studies [FFD]
 -----------------------------------------------------------------------------------------------------------
 Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200,200)**|**Uniform(0,200)**|`r Mu1` (`r Mu1_SD`) [`r Mu1CI`] |`r Tau1` (`r Tau1_SD`) [`r Tau1CI`]|
-N(0, 0.001)      |Uniform(0,200)     |`r Mu2` (`r Mu2_SD`) [`r Mu2CI`] |`r Tau2` (`r Tau2_SD`) [`r Tau2CI`]|
-Uniform(-200,200)|Gamma(0.001, 0.001)|`r Mu3` (`r Mu3_SD`) [`r Mu3CI`] |`r Tau3` (`r Tau3_SD`) [`r Tau3CI`]|
-N(0, 0.001)      |Gamma(0.001, 0.001)|`r Mu4` (`r Mu4_SD`) [`r Mu4CI`] |`r Tau4` (`r Tau4_SD`) [`r Tau4CI`]|
+**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu1` (`r Mu1_SD`) [`r Mu1CI`] |`r Tau1` (`r Tau1_SD`) [`r Tau1CI`]|
+Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu2` (`r Mu2_SD`) [`r Mu2CI`] |`r Tau2` (`r Tau2_SD`) [`r Tau2CI`]|
+Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu3` (`r Mu3_SD`) [`r Mu3CI`] |`r Tau3` (`r Tau3_SD`) [`r Tau3CI`]|
+Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu4` (`r Mu4_SD`) [`r Mu4CI`] |`r Tau4` (`r Tau4_SD`) [`r Tau4CI`]|
+Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu5` (`r Mu5_SD`) [`r Mu5CI`] |`r Tau5` (`r Tau5_SD`) [`r Tau5CI`]|
+Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu5_2` (`r Mu5_2_SD`) [`r Mu5_2CI`] |`r Tau5_2` (`r Tau5_2_SD`) [`r Tau5_2CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
@@ -105,10 +144,12 @@ N+2 preview effects on word N+2 only for alphabetical studies [FFD]
 -----------------------------------------------------------------------------------------------------------
 Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200,200)**|**Uniform(0,200)**|`r Mu6` (`r Mu6_SD`) [`r Mu6CI`] |`r Tau6` (`r Tau6_SD`) [`r Tau6CI`]|
-N(0, 0.001)      |Uniform(0,200)     |`r Mu7` (`r Mu7_SD`) [`r Mu7CI`] |`r Tau7` (`r Tau7_SD`) [`r Tau7CI`]|
-Uniform(-200,200)|Gamma(0.001, 0.001)|`r Mu8` (`r Mu8_SD`) [`r Mu8CI`] |`r Tau8` (`r Tau8_SD`) [`r Tau8CI`]|
-N(0, 0.001)      |Gamma(0.001, 0.001)|`r Mu9` (`r Mu9_SD`) [`r Mu9CI`] |`r Tau9` (`r Tau9_SD`) [`r Tau9CI`]|
+**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu6` (`r Mu6_SD`) [`r Mu6CI`] |`r Tau6` (`r Tau6_SD`) [`r Tau6CI`]|
+Normal(0, $100^2$)|Uniform(0, 200)     |`r Mu7` (`r Mu7_SD`) [`r Mu7CI`] |`r Tau7` (`r Tau7_SD`) [`r Tau7CI`]|
+Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu8` (`r Mu8_SD`) [`r Mu8CI`] |`r Tau8` (`r Tau8_SD`) [`r Tau8CI`]|
+Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu9` (`r Mu9_SD`) [`r Mu9CI`] |`r Tau9` (`r Tau9_SD`) [`r Tau9CI`]|
+Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu10` (`r Mu10_SD`) [`r Mu10CI`] |`r Tau10` (`r Tau10_SD`) [`r Tau10CI`]|
+Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu10_2` (`r Mu10_2_SD`) [`r Mu10_2CI`] |`r Tau10_2` (`r Tau10_2_SD`) [`r Tau10_2CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
@@ -117,10 +158,12 @@ N+2 preview effects on word N+2 for all studies [GD]
 -----------------------------------------------------------------------------------------------------------
 Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200,200)**|**Uniform(0,200)**|`r Mu11` (`r Mu11_SD`) [`r Mu11CI`] |`r Tau11` (`r Tau11_SD`) [`r Tau11CI`]|
-N(0, 0.001)      |Uniform(0,200)     |`r Mu12` (`r Mu12_SD`) [`r Mu12CI`] |`r Tau12` (`r Tau12_SD`) [`r Tau12CI`]|
-Uniform(-200,200)|Gamma(0.001, 0.001)|`r Mu13` (`r Mu13_SD`) [`r Mu13CI`] |`r Tau13` (`r Tau13_SD`) [`r Tau13CI`]|
-N(0, 0.001)      |Gamma(0.001, 0.001)|`r Mu14` (`r Mu14_SD`) [`r Mu14CI`] |`r Tau14` (`r Tau14_SD`) [`r Tau14CI`]|
+**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu11` (`r Mu11_SD`) [`r Mu11CI`] |`r Tau11` (`r Tau11_SD`) [`r Tau11CI`]|
+Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu12` (`r Mu12_SD`) [`r Mu12CI`] |`r Tau12` (`r Tau12_SD`) [`r Tau12CI`]|
+Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu13` (`r Mu13_SD`) [`r Mu13CI`] |`r Tau13` (`r Tau13_SD`) [`r Tau13CI`]|
+Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu14` (`r Mu14_SD`) [`r Mu14CI`] |`r Tau14` (`r Tau14_SD`) [`r Tau14CI`]|
+Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu15` (`r Mu15_SD`) [`r Mu15CI`] |`r Tau15` (`r Tau15_SD`) [`r Tau15CI`]|
+Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu15_2` (`r Mu15_2_SD`) [`r Mu15_2CI`] |`r Tau15_2` (`r Tau15_2_SD`) [`r Tau15_2CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
@@ -130,10 +173,12 @@ N+2 preview effects on word N+2 only for alphabetical studies [GD]
 -----------------------------------------------------------------------------------------------------------
 Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200,200)**|**Uniform(0,200)**|`r Mu16` (`r Mu16_SD`) [`r Mu16CI`] |`r Tau16` (`r Tau16_SD`) [`r Tau16CI`]|
-N(0, 0.001)      |Uniform(0,200)     |`r Mu17` (`r Mu17_SD`) [`r Mu17CI`] |`r Tau17` (`r Tau17_SD`) [`r Tau17CI`]|
-Uniform(-200,200)|Gamma(0.001, 0.001)|`r Mu18` (`r Mu18_SD`) [`r Mu18CI`] |`r Tau18` (`r Tau18_SD`) [`r Tau18CI`]|
-N(0, 0.001)      |Gamma(0.001, 0.001)|`r Mu19` (`r Mu19_SD`) [`r Mu19CI`] |`r Tau19` (`r Tau19_SD`) [`r Tau19CI`]|
+**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu16` (`r Mu16_SD`) [`r Mu16CI`] |`r Tau16` (`r Tau16_SD`) [`r Tau16CI`]|
+Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu17` (`r Mu17_SD`) [`r Mu17CI`] |`r Tau17` (`r Tau17_SD`) [`r Tau17CI`]|
+Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu18` (`r Mu18_SD`) [`r Mu18CI`] |`r Tau18` (`r Tau18_SD`) [`r Tau18CI`]|
+Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu19` (`r Mu19_SD`) [`r Mu19CI`] |`r Tau19` (`r Tau19_SD`) [`r Tau19CI`]|
+Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu20` (`r Mu20_SD`) [`r Mu20CI`] |`r Tau20` (`r Tau20_SD`) [`r Tau20CI`]|
+Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu20_2` (`r Mu20_2_SD`) [`r Mu20_2CI`] |`r Tau20_2` (`r Tau20_2_SD`) [`r Tau20_2CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
@@ -142,10 +187,13 @@ N+2 preview effects on word N+1 [FFD]
 -----------------------------------------------------------------------------------------------------------
 Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200,200)**|**Uniform(0,200)**|`r Mu21` (`r Mu21_SD`) [`r Mu21CI`] |`r Tau21` (`r Tau21_SD`) [`r Tau21CI`]|
-N(0, 0.001)      |Uniform(0,200)     |`r Mu22` (`r Mu22_SD`) [`r Mu22CI`] |`r Tau22` (`r Tau22_SD`) [`r Tau22CI`]|
-Uniform(-200,200)|Gamma(0.001, 0.001)|`r Mu23` (`r Mu23_SD`) [`r Mu23CI`] |`r Tau23` (`r Tau23_SD`) [`r Tau23CI`]|
-N(0, 0.001)      |Gamma(0.001, 0.001)|`r Mu24` (`r Mu24_SD`) [`r Mu24CI`] |`r Tau24` (`r Tau24_SD`) [`r Tau24CI`]|
+**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu21` (`r Mu21_SD`) [`r Mu21CI`] |`r Tau21` (`r Tau21_SD`) [`r Tau21CI`]|
+Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu22` (`r Mu22_SD`) [`r Mu22CI`] |`r Tau22` (`r Tau22_SD`) [`r Tau22CI`]|
+Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu23` (`r Mu23_SD`) [`r Mu23CI`] |`r Tau23` (`r Tau23_SD`) [`r Tau23CI`]|
+Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu24` (`r Mu24_SD`) [`r Mu24CI`] |`r Tau24` (`r Tau24_SD`) [`r Tau24CI`]|
+Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu25` (`r Mu25_SD`) [`r Mu25CI`] |`r Tau25` (`r Tau25_SD`) [`r Tau25CI`]|
+Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu25_2` (`r Mu25_2_SD`) [`r Mu25_2CI`] |`r Tau25_2` (`r Tau25_2_SD`) [`r Tau25_2CI`]|
+
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
@@ -154,9 +202,11 @@ N+2 preview effects on word N+1 [GD]
 -----------------------------------------------------------------------------------------------------------
 Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200,200)**|**Uniform(0,200)**|`r Mu26` (`r Mu26_SD`) [`r Mu26CI`] |`r Tau26` (`r Tau26_SD`) [`r Tau26CI`]|
-N(0, 0.001)      |Uniform(0,200)     |`r Mu27` (`r Mu27_SD`) [`r Mu27CI`] |`r Tau27` (`r Tau27_SD`) [`r Tau27CI`]|
-Uniform(-200,200)|Gamma(0.001, 0.001)|`r Mu28` (`r Mu28_SD`) [`r Mu28CI`] |`r Tau28` (`r Tau28_SD`) [`r Tau28CI`]|
-N(0, 0.001)      |Gamma(0.001, 0.001)|`r Mu29` (`r Mu29_SD`) [`r Mu29CI`] |`r Tau29` (`r Tau29_SD`) [`r Tau29CI`]|
+**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu26` (`r Mu26_SD`) [`r Mu26CI`] |`r Tau26` (`r Tau26_SD`) [`r Tau26CI`]|
+Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu27` (`r Mu27_SD`) [`r Mu27CI`] |`r Tau27` (`r Tau27_SD`) [`r Tau27CI`]|
+Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu28` (`r Mu28_SD`) [`r Mu28CI`] |`r Tau28` (`r Tau28_SD`) [`r Tau28CI`]|
+Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu29` (`r Mu29_SD`) [`r Mu29CI`] |`r Tau29` (`r Tau29_SD`) [`r Tau29CI`]|
+Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu30` (`r Mu30_SD`) [`r Mu30CI`] |`r Tau30` (`r Tau30_SD`) [`r Tau30CI`]|
+Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu30_2` (`r Mu30_2_SD`) [`r Mu30_2CI`] |`r Tau30_2` (`r Tau30_2_SD`) [`r Tau30_2CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
