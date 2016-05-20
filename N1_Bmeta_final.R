@@ -1457,7 +1457,7 @@ M40_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M40_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M40_5.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M40<- coda.samples(M40_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum40<- summary(M40); sum40
+sum40<- summary(M40); sum40; save(sum40, file= "Summaries/N1/sum40.Rda")
 
 # Diagnostics
 #plot(M40, trace=FALSE)
@@ -1480,7 +1480,7 @@ M41_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M41_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M41_5.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M41<- coda.samples(M41_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum41<- summary(M41); sum41
+sum41<- summary(M41); sum41; save(sum41, file= "Summaries/N1/sum41.Rda")
 
 # Diagnostics
 #plot(M41, trace=FALSE)

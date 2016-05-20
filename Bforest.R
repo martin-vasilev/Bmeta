@@ -8,10 +8,36 @@
 
 #png(file = 'Plots/N1forest.png', width = 1300, height = 600, units = "px")
 
+get_margs<- function(minY, maxY){
+  library(plyr)
+  
+   if(sum(minY>0)==0){
+     minY<- minY-10
+   } else {
+     minY<- minY+10
+   }
+  minY<- round_any(minY, 10, floor)
+  
+  if(sum(maxY>0)==0){
+    maxY<- maxY-10
+  } else {
+    maxY<- maxY + 10
+  }
+  maxY<- round_any(maxY, 10, ceiling)
+  
+  rng<- seq(minY, maxY, 10)
+  len<- length(rng)/2
+  out<- NULL
+for(i in 1:len){
+  out[i]<- rng[i*2]
+}
+  
+  return(out)
+}
 
 et_al<- function(string){
   t<- c(gregexpr(pattern =' ', string), gregexpr(pattern =',', string)); t<- as.numeric(unlist(t))
-  t<- t[which(t>0)]; t<- min(t)
+t<- t[which(t>0)]; t<- min(t)
   auth<- substring(string, 1, t-1)
   C2<- as.numeric(unlist(gregexpr(pattern =')', string)))
   year<- substring(string, nchar(string)-5, C2)
@@ -23,26 +49,42 @@ et_al<- function(string){
 #variables #
 ############
 load("Data/data5.Rda")
-data5$prec<- 1/data5$S.sqr
-data5$weight<- NULL
+load("Summaries/N1/sum40.Rda")
+data<- data5
+data$prec<- 1/data$S.sqr
+data$weight<- NULL
 
 for(i in 1:nrow(data5)){
-  data5$weight[i]<- data5$prec[i]/sum(data5$prec)
+  data$weight[i]<- data$prec[i]/sum(data$prec)
 }
-data5$weight<- data5$weight*100
+data$weight<- data$weight*100
   
-data5$Paper <- sapply(data5$Paper, as.character)
-studies<- data5$Paper
-studies<- et_al(studies)
-obsM<- data5$T
-CI_L<- 1.96*sqrt(data5$S.sqr); CI_L<- obsM- CI_L
-CI_R<- 1.96*sqrt(data5$S.sqr); CI_R<- obsM+ CI_R
+data$Paper <- sapply(data$Paper, as.character)
+studies<- NULL
+
+for(i in 1:nrow(data)){
+  studies[i]<- et_al(data$Paper[i])
+}
+
+#studies<- et_al(studies)
+
+# observed:
+obsM<- data$T
+CI_L<- 1.96*sqrt(data$S.sqr); CI_L<- obsM- CI_L
+CI_R<- 1.96*sqrt(data$S.sqr); CI_R<- obsM+ CI_R
+
+# posterior:
+pM<- unname(sum40$statistics[3:nrow(sum40$statistics),1])
+CrI_L<- unname(sum40$quantiles[3:nrow(sum40$statistics),1])
+CrI_R<- unname(sum40$quantiles[3:nrow(sum40$statistics),5])
 
 rng<- c(CI_L, CI_R)
 
 maxX<- 1500
 minY<- min(rng)
 maxY<- max(rng)
+margs<- get_margs(minY, maxY)
+
 sPlot<- minY-5
 start<- maxY*(5/100) # where to start plotting
 step<- 22 # step between studies
@@ -52,37 +94,51 @@ step<- 22 # step between studies
   windows()
   par(mfrow=c(2,1), mai= c(0.1,0.1,0.2,0.5))
   
-  library(plyr)
-  t1<- round_any(minY, 10, f = floor)
-  t2<- round_any(maxY, 10, f = ceiling)
-  t<- t2-t1; 
+  
   
   plot (y, type="l", col="white", lty="solid", lwd=2
         , ylim=c(sPlot, maxY), xlim= c(0, maxX)
         , axes=F, xaxs="i", yaxs="i", cex.lab=1.5, ann=FALSE)
   
-  axis(side=4, at=c(minY, minY +1/5*(maxY), minY +2/5*(maxY),minY +3/5*(maxY),
-                    minY +4/5*(maxY), maxY), 
-       labels=c(toString(round(minY)), toString(round(maxY -4/5*(maxY))), toString(round(maxY -3/5*(maxY))),
-                toString(round(maxY -2/5*(maxY))), toString(round(maxY -1/5*(maxY))), toString(round(maxY))), 
+  axis(side=4, at=c(margs[1], margs[2], margs[3], margs[4], margs[5], margs[6], margs[7], margs[8], margs[9]), 
+       labels=c(toString(margs[1]), toString(margs[2]), toString(margs[3]), toString(margs[4]), toString(margs[5]),
+                toString(margs[6]), toString(margs[7]), toString(margs[8]), toString(margs[9]) ), 
        tick=T, cex.axis=1.2)
   
   
 # Plot 95% CIs
 for (i in 1:length(studies)){
-  segments(x0=start+step*i, y0=CI_L[i], x1=start+step*i, y1=CI_R[i], lwd=1.2, lty=2, col="darkorchid")
-  segments(x0=start+step*i-step/4, y0=CI_L[i], x1=start+step*i+step/4, y1=CI_L[i], lwd=1.2, lty=1, col="darkorchid")
-  segments(x0=start+step*i-step/4, y0=CI_R[i], x1=start+step*i+step/4, y1=CI_R[i], lwd=1.2, lty=1, col="darkorchid")
+  segments(x0=start+step*i- step/4, y0=CI_L[i], x1=start+step*i- step/4, y1=CI_R[i], lwd=1.2, lty=2, col="black")
+  segments(x0=start+step*i-2*(step/4), y0=CI_L[i], x1=start+step*i-step/4+step/4, y1=CI_L[i], lwd=1.2, lty=1, col="black")
+  segments(x0=start+step*i-2*(step/4), y0=CI_R[i], x1=start+step*i-step/4+step/4, y1=CI_R[i], lwd=1.2, lty=1, col="black")
 }    
   
   
 # Plot observed means
 for (i in 1:length(studies)){
-  points(x= start+step*i, y=obsM[i], pch = 15, cex=3*(data5$weight[i]/max(data5$weight)), col="white", bg="green")
-  points(x= start+step*i, y=obsM[i], pch = 0, cex=3*(data5$weight[i]/max(data5$weight)), col="darkred", bg="green")
+  points(x= start+step*i- step/4, y=obsM[i], pch = 15, cex=3*(data$weight[i]/max(data$weight)), col="white")
+  points(x= start+step*i- step/4, y=obsM[i], pch = 0, cex=3*(data$weight[i]/max(data$weight)), col="black")
 }
-
   
+  # arithmetic mean:
+#  abline(h=mean(obsM), lwd=1.2, lty=2, col="darkorchid")
+
+# Plot posterior means
+for (i in 1:length(studies)){
+  points(x= start+step*i +step/4, y=pM[i], pch = 15, cex=3*(data$weight[i]/max(data$weight)), col="darkred")
+} 
+
+ # Plot 95% CrIs
+for (i in 1:length(studies)){
+  segments(x0=start+step*i- step/4, y0=CrI_L[i], x1=start+step*i- step/4, y1=CrI_R[i], lwd=1.2, lty=2, col="darkred")
+  segments(x0=start+step*i-2*(step/4), y0=CrI_L[i], x1=start+step*i-step/4+step/4, y1=CrI_L[i], lwd=1.2, lty=1, col="darkred")
+  segments(x0=start+step*i-2*(step/4), y0=CrI_R[i], x1=start+step*i-step/4+step/4, y1=CrI_R[i], lwd=1.2, lty=1, col="darkred")
+}    
+  
+  # posterior mean:
+  abline(h=sum40$statistics[1,1], lwd=1.2, lty=1, col="darkred")
+  
+#
 
   ###############3
   # Plot Annotation
