@@ -1,7 +1,7 @@
 # Script for performing a sensitivity analysis by using the leave-one-out method
 # Martin Vasilev, 2016
 
-sensitivity_analysis<- function(data1, mu="dunif(-50, 50)", tau="dunif(0, 50)"){
+sensitivity_analysis<- function(data1, mu="dunif(-200, 200)", tau="dunif(0, 200)"){
   
   source("JModel.R")
   if("rjags" %in% rownames(installed.packages())==FALSE){

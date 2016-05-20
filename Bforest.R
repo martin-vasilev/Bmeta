@@ -8,16 +8,29 @@
 
 #png(file = 'Plots/N1forest.png', width = 1300, height = 600, units = "px")
 
+
 et_al<- function(string){
-  auth<- substring(string, 1, regexpr(',', a)-1)
-  year<- substring(string, nchar(string)-5, nchar(string))
+  t<- c(gregexpr(pattern =' ', string), gregexpr(pattern =',', string)); t<- as.numeric(unlist(t))
+  t<- t[which(t>0)]; t<- min(t)
+  auth<- substring(string, 1, t-1)
+  C2<- as.numeric(unlist(gregexpr(pattern =')', string)))
+  year<- substring(string, nchar(string)-5, C2)
   out<- paste(auth," et al. ", year, sep="")
+  return(out)
 }
 
 ############
 #variables #
 ############
 load("Data/data5.Rda")
+data5$prec<- 1/data5$S.sqr
+data5$weight<- NULL
+
+for(i in 1:nrow(data5)){
+  data5$weight[i]<- data5$prec[i]/sum(data5$prec)
+}
+data5$weight<- data5$weight*100
+  
 data5$Paper <- sapply(data5$Paper, as.character)
 studies<- data5$Paper
 studies<- et_al(studies)
@@ -30,48 +43,59 @@ rng<- c(CI_L, CI_R)
 maxX<- 1500
 minY<- min(rng)
 maxY<- max(rng)
-sPlot<- 30
+sPlot<- minY-5
 start<- maxY*(5/100) # where to start plotting
 step<- 22 # step between studies
 
   y<- 1:10
   
   windows()
-#  par(mfrow=c(1,1))
-  plot (y, type="l", col="white", lty="solid", lwd=2
-        , ylim=c(0, 100), xlim= c(0, maxX)
-        , axes=F, xaxs="i", yaxs="i", cex.lab=1.5)
-  abline(h=sPlot-5)
+  par(mfrow=c(2,1), mai= c(0.1,0.1,0.2,0.5))
   
-  axis(side=4, at=c(sPlot+minY, sPlot+maxY -4/5*(maxY), sPlot+maxY -3/5*(maxY), sPlot+maxY -2/5*(maxY),
-                    sPlot+maxY -1/5*(maxY), sPlot+maxY), 
+  library(plyr)
+  t1<- round_any(minY, 10, f = floor)
+  t2<- round_any(maxY, 10, f = ceiling)
+  t<- t2-t1; 
+  
+  plot (y, type="l", col="white", lty="solid", lwd=2
+        , ylim=c(sPlot, maxY), xlim= c(0, maxX)
+        , axes=F, xaxs="i", yaxs="i", cex.lab=1.5, ann=FALSE)
+  
+  axis(side=4, at=c(minY, minY +1/5*(maxY), minY +2/5*(maxY),minY +3/5*(maxY),
+                    minY +4/5*(maxY), maxY), 
        labels=c(toString(round(minY)), toString(round(maxY -4/5*(maxY))), toString(round(maxY -3/5*(maxY))),
                 toString(round(maxY -2/5*(maxY))), toString(round(maxY -1/5*(maxY))), toString(round(maxY))), 
        tick=T, cex.axis=1.2)
   
-# Plot study label  
-for (i in 1:length(studies)){
-  text(x=start+step*i, y=1, studies[i], cex=1.2, font=2, srt = 90, adj=0)
-}
   
 # Plot 95% CIs
 for (i in 1:length(studies)){
-  segments(x0=start+step*i, y0=sPlot+ CI_L[i], x1=start+step*i, y1=sPlot+CI_R[i], lwd=1.2, lty=2, col="darkorchid")
+  segments(x0=start+step*i, y0=CI_L[i], x1=start+step*i, y1=CI_R[i], lwd=1.2, lty=2, col="darkorchid")
+  segments(x0=start+step*i-step/4, y0=CI_L[i], x1=start+step*i+step/4, y1=CI_L[i], lwd=1.2, lty=1, col="darkorchid")
+  segments(x0=start+step*i-step/4, y0=CI_R[i], x1=start+step*i+step/4, y1=CI_R[i], lwd=1.2, lty=1, col="darkorchid")
 }    
   
   
 # Plot observed means
 for (i in 1:length(studies)){
-  points(x= start+step*i, y=sPlot+ obsM[i], pch = 0, cex=1.2, col="darkred")
+  points(x= start+step*i, y=obsM[i], pch = 15, cex=3*(data5$weight[i]/max(data5$weight)), col="white", bg="green")
+  points(x= start+step*i, y=obsM[i], pch = 0, cex=3*(data5$weight[i]/max(data5$weight)), col="darkred", bg="green")
 }
 
   
 
+  ###############3
+  # Plot Annotation
   
+  plot (y, type="l", col="white", lty="solid", lwd=2
+        , ylim=c(0, 60), xlim= c(0, maxX)
+        , axes=F, xaxs="i", yaxs="i", cex.lab=1.5, ann=FALSE)
+  abline(h=60)
   
-  
-  
-  
+  # Plot study label  
+  for (i in 1:length(studies)){
+    text(x=start+step*i, y=30, studies[i], cex=1.2, font=2, srt = 90, adj=0)
+  }
   
   
   
