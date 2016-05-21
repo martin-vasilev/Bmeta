@@ -539,18 +539,26 @@ source('sensitivity_analysis.R')
 
 # N+2 effects on word N+2, FFD:
 Sens1<- sensitivity_analysis(data1)
+save(Sens1, file= "Summaries/Sensitivity/N2_Sens1.Rda")
 
 # N+2 effects on word N+2, GD:
 Sens2<- sensitivity_analysis(data2)
+save(Sens2, file= "Summaries/Sensitivity/N2_Sens2.Rda")
 
 # N+2 effects on word N+1, FFD:
 Sens3<- sensitivity_analysis(data3)
+save(Sens3, file= "Summaries/Sensitivity/N2_Sens3.Rda")
 
 # N+2 effects on word N+1, FFD:
 Sens4<- sensitivity_analysis(data4)
+save(Sens4, file= "Summaries/Sensitivity/N2_Sens4.Rda")
 
 #############
 # Save descriptives:
+
+load('Summaries/N2/sum1.Rda');load('Summaries/N2/sum2.Rda');
+load('Summaries/N2/sum3.Rda');load('Summaries/N2/sum4.Rda');
+
 # M1:
 M1_meanP<- sum1$statistics[1,1] # Pooled mean
 M1_meanTau<-  sum1$statistics[2,1] #  Tau
