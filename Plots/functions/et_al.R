@@ -3,6 +3,9 @@ et_al<- function(string){
   t<- c(gregexpr(pattern =' ', string), gregexpr(pattern =',', string)); t<- as.numeric(unlist(t))
   t<- t[which(t>0)]; t<- min(t)
   auth<- substring(string, 1, t-1)
+  
+  par= gregexpr(pattern ='\\(', string); par<- as.numeric(unlist(par))
+  
   #C2<- as.numeric(unlist(gregexpr(pattern =')', string)))
   
   num<- as.numeric(unlist(strsplit(gsub("[^0-9]", "", unlist(string)), "")))
@@ -21,10 +24,17 @@ et_al<- function(string){
     year= "n.d."
   }
   
+  et.al<-NULL
+  if(par==t+1){
+    et.al<- " "
+  } else{
+    et.al<- " et al. "
+  }
+  
   if(exp== -1){
-    out<- paste(auth," et al. ", "(", year, ")", sep="")
+    out<- paste(auth, et.al, "(", year, ")", sep="")
   }else{
-    out<- paste(auth," et al. ", "(", year, ")", ", ", expS, sep="")
+    out<- paste(auth, et.al, "(", year, ")", ", ", expS, sep="")
   }
   
   

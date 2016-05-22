@@ -4,7 +4,7 @@
 
 # Martin R. Vasilev, 2016
 
-png(file = 'Plots/N1forest_FFD.png', width = 1600, height = 1000, units = "px")
+png(file = 'Plots/N1forest_FFD.png', width = 1800, height = 1000, units = "px")
 
 source("Plots/functions/get_margs.R")
 source("Plots/functions/et_al.R")
@@ -29,6 +29,9 @@ studies<- NULL
 for(i in 1:nrow(data)){
   studies[i]<- et_al(data$Paper[i])
 }
+#studies[34]<- "Pollatsek et al. (1992), Exp.2"
+#studies[9]<- "Angele et al. (2013), Exp.2"
+#studies[59]<- "Rayner et al. (2007), Exp.2"
 
 # observed:
 obsM<- data$T
@@ -41,7 +44,7 @@ CrI_L<- unname(sum40$quantiles[3:nrow(sum40$statistics),1])
 CrI_R<- unname(sum40$quantiles[3:nrow(sum40$statistics),5])
 
 rng<- c(CI_L, CI_R)
-maxX<- 1600
+maxX<- 1560
 minY<- min(rng)
 maxY<- max(rng)
 margs<- get_margs(minY, maxY)
@@ -54,12 +57,12 @@ df<- data.frame()
   y<- 1:10
   
 #  windows()
-  par(mfrow=c(2,1), mai= c(0.1,0.1,0.2,0.5))
+  par(mfrow=c(2,1), mai= c(0.1,0.1,0.2,0.85))
   
   
   
   plot (y, type="l", col="white", lty="solid", lwd=2
-        , ylim=c(sPlot, maxY), xlim= c(0, maxX)
+        , ylim=c(sPlot, maxY+33), xlim= c(0, maxX)
         , axes=F, xaxs="i", yaxs="i", cex.lab=1.5) #
   
   axis(side=4, at=c(margs[1], margs[2], margs[3], margs[4], margs[5], margs[6], margs[7], margs[8], margs[9]), 
@@ -67,7 +70,7 @@ df<- data.frame()
                 toString(margs[6]), toString(margs[7]), toString(margs[8]), toString(margs[9]) ), 
        tick=T, cex.axis=1.2)
   
-  mtext("Label", side=4)  
+  mtext("Effect size (in ms)", side=4, line= 3, cex=1.4, font=2)  
   
 # Plot 95% CIs
 for (i in 1:length(studies)){
@@ -102,10 +105,27 @@ for (i in 1:length(studies)){
 #  abline(h=sum40$statistics[1,1], lwd=1.2, lty=1, col="darkred")
   
 # pooled mean:
-  points(x= (96/100)*maxX, y=sum40$statistics[1,1], pch = 18, cex=2, col="darkred")
-  segments(x0=(96/100)*maxX, y0=sum40$quantiles[1,1], x1=(96/100)*maxX, y1=sum40$quantiles[1,5], lwd=1.2, lty=1, col="darkred")
-  segments(x0=(96/100)*maxX-5, y0=sum40$quantiles[1,5], x1=(96/100)*maxX+5, y1=sum40$quantiles[1,5], lwd=1.2, lty=1, col="darkred")
-  segments(x0=(96/100)*maxX-5, y0=sum40$quantiles[1,1], x1=(96/100)*maxX+5, y1=sum40$quantiles[1,1], lwd=1.2, lty=1, col="darkred")
+  points(x= (97.3/100)*maxX, y=sum40$statistics[1,1], pch = 18, cex=2.2, col="darkred")
+  segments(x0=(97.3/100)*maxX, y0=sum40$quantiles[1,1], x1=(97.3/100)*maxX, y1=sum40$quantiles[1,5], lwd=1.2, lty=1, col="darkred")
+  segments(x0=(97.3/100)*maxX-5, y0=sum40$quantiles[1,5], x1=(97.3/100)*maxX+5, y1=sum40$quantiles[1,5], lwd=1.2, lty=1, col="darkred")
+  segments(x0=(97.3/100)*maxX-5, y0=sum40$quantiles[1,1], x1=(97.3/100)*maxX+5, y1=sum40$quantiles[1,1], lwd=1.2, lty=1, col="darkred")
+  
+  
+
+ #  legend:
+  rect(xleft = (98.7/100)*maxX, ybottom = 60, xright = (95.7/100)*maxX, ytop = 137, lwd=1.2, lty = "solid", col="white") 
+ #  observed:
+  segments(x0=(96.5/100)*maxX, y0=64, x1=(96.5/100)*maxX, y1=76, lwd=1.2, lty=2, col="black")
+  points(x= (96.5/100)*maxX, y=69.4, pch = 15, cex=1.3, col="white")
+  points(x= (96.5/100)*maxX, y=69.4, pch = 0, cex=1.3, col="black")
+
+ # posterior
+  points(x= (97.8/100)*maxX, y=69.4, pch = 15, cex=1.3, col="darkred")
+  segments(x0=(97.8/100)*maxX, y0=64, x1=(97.8/100)*maxX, y1=76, lwd=1.2, lty=1, col="darkred")
+  
+  # text:
+  text(x=(97.8/100)*maxX, y=80, "Posterior (95% CrIs)", cex=1.2, font=2, srt = 90, adj=0)
+  text(x=(96.5/100)*maxX, y=80, "Observed (95% CIs)", cex=1.2, font=2, srt = 90, adj=0)
   
   ###############3
   # Plot Annotation
@@ -120,6 +140,10 @@ for (i in 1:length(studies)){
   }
 
   
+  text(x=(97.3/100)*maxX, y=33, "Posterior mean", cex=1.4, font=2, srt = 90, adj=0)
+  
+  
+  mtext("Studies", side=1, line= -17, cex=1.4, font=2)
   
   dev.off() 
   
