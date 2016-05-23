@@ -4,6 +4,11 @@
 
 # !NOTE: In this version I use uniform prior distributions for mu
 
+##############################################
+# "ULTIMATE" N+1 preview effect at the end!  #
+##############################################
+
+
 rm(list=ls())
 
 library(rjags)
@@ -1446,18 +1451,35 @@ load("Data/data8.Rda") #TVT
 # M40 (N+1 effect,  measured with FFD):
 data<- data5[,3:4]; 
 M40_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M40.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M40_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M40_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M40_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M40_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M40_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M40_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M40_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M40_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M40<- coda.samples(M40_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum40<- summary(M40); sum40; save(sum40, file= "Summaries/N1/sum40.Rda")
+M40_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M40_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M40_2<- coda.samples(M40_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum40_2<- summary(M40_2); save(sum40_2, file= "Summaries/N1/sum40_2.Rda")
+M40_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M40_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M40_3<- coda.samples(M40_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum40_3<- summary(M40_3); save(sum40_3, file= "Summaries/N1/sum40_3.Rda")
+M40_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M40_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M40_4<- coda.samples(M40_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum40_4<- summary(M40_4); save(sum40_4, file= "Summaries/N1/sum40_4.Rda")
+M40_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M40_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M40_5<- coda.samples(M40_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum40_5<- summary(M40_5); save(sum40_5, file= "Summaries/N1/sum40_5.Rda")
+M40_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M40_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M40_6<- coda.samples(M40_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum40_6<- summary(M40_6); save(sum40_6, file= "Summaries/N1/sum40_6.Rda")
+M40_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M40_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M40_7<- coda.samples(M40_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum40_7<- summary(M40_7); save(sum40_7, file= "Summaries/N1/sum40_7.Rda")
+
 
 # Diagnostics
 #plot(M40, trace=FALSE)
@@ -1465,22 +1487,63 @@ gelman.diag(M40, confidence=0.95); gelman.plot(M40, confidence=0.95) # Gelman an
 traceplot(M40, smooth=TRUE); 
 autocorr.diag(M40); autocorr.plot(M40, lagmax=20); acfplot(M40) # auto-correlations
 
+gelman.diag(M40_2, confidence=0.95); gelman.plot(M40_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M40_2, smooth=TRUE); 
+autocorr.diag(M40_2); autocorr.plot(M40_2, lagmax=20); acfplot(M40_2) # auto-correlations
+
+gelman.diag(M40_3, confidence=0.95); gelman.plot(M40_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M40_3, smooth=TRUE); 
+autocorr.diag(M40_3); autocorr.plot(M40_3, lagmax=20); acfplot(M40_3) # auto-correlations
+
+gelman.diag(M40_4, confidence=0.95); gelman.plot(M40_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M40_4, smooth=TRUE); 
+autocorr.diag(M40_4); autocorr.plot(M40_4, lagmax=20); acfplot(M40_4) # auto-correlations
+
+gelman.diag(M40_5, confidence=0.95); gelman.plot(M40_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M40_5, smooth=TRUE); 
+autocorr.diag(M40_5); autocorr.plot(M40_5, lagmax=20); acfplot(M40_5) # auto-correlations
+
+gelman.diag(M40_6, confidence=0.95); gelman.plot(M40_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M40_6, smooth=TRUE); 
+autocorr.diag(M40_6); autocorr.plot(M40_6, lagmax=20); acfplot(M40_6) # auto-correlations
+
+gelman.diag(M40_7, confidence=0.95); gelman.plot(M40_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M40_7, smooth=TRUE); 
+autocorr.diag(M40_7); autocorr.plot(M40_7, lagmax=20); acfplot(M40_7) # auto-correlations
+
 #--------------------------------------
 # M41 (N+1 effect,  measured with SFD):
 data<- data7[,3:4]; 
 M41_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M41.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M41_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M41_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M41_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M41_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M41_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M41_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M41_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M41_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M41<- coda.samples(M41_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum41<- summary(M41); sum41; save(sum41, file= "Summaries/N1/sum41.Rda")
+M41_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M41_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M41_2<- coda.samples(M41_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum41_2<- summary(M41_2); save(sum41_2, file= "Summaries/N1/sum41_2.Rda")
+M41_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M41_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M41_3<- coda.samples(M41_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum41_3<- summary(M41_3); save(sum41_3, file= "Summaries/N1/sum41_3.Rda")
+M41_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M41_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M41_4<- coda.samples(M41_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum41_4<- summary(M41_4); save(sum41_4, file= "Summaries/N1/sum41_4.Rda")
+M41_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M41_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M41_5<- coda.samples(M41_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum41_5<- summary(M41_5); save(sum41_5, file= "Summaries/N1/sum41_5.Rda")
+M41_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M41_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M41_6<- coda.samples(M41_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum41_6<- summary(M41_6); save(sum41_6, file= "Summaries/N1/sum41_6.Rda")
+M41_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M41_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M41_7<- coda.samples(M41_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum41_7<- summary(M41_7); save(sum41_7, file= "Summaries/N1/sum41_7.Rda")
+
 
 # Diagnostics
 #plot(M41, trace=FALSE)
@@ -1488,22 +1551,62 @@ gelman.diag(M41, confidence=0.95); gelman.plot(M41, confidence=0.95) # Gelman an
 traceplot(M41, smooth=TRUE); 
 autocorr.diag(M41); autocorr.plot(M41, lagmax=20); acfplot(M41) # auto-correlations
 
+gelman.diag(M41_2, confidence=0.95); gelman.plot(M41_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M41_2, smooth=TRUE); 
+autocorr.diag(M41_2); autocorr.plot(M41_2, lagmax=20); acfplot(M41_2) # auto-correlations
+
+gelman.diag(M41_3, confidence=0.95); gelman.plot(M41_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M41_3, smooth=TRUE); 
+autocorr.diag(M41_3); autocorr.plot(M41_3, lagmax=20); acfplot(M41_3) # auto-correlations
+
+gelman.diag(M41_4, confidence=0.95); gelman.plot(M41_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M41_4, smooth=TRUE); 
+autocorr.diag(M41_4); autocorr.plot(M41_4, lagmax=20); acfplot(M41_4) # auto-correlations
+
+gelman.diag(M41_5, confidence=0.95); gelman.plot(M41_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M41_5, smooth=TRUE); 
+autocorr.diag(M41_5); autocorr.plot(M41_5, lagmax=20); acfplot(M41_5) # auto-correlations
+
+gelman.diag(M41_6, confidence=0.95); gelman.plot(M41_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M41_6, smooth=TRUE); 
+autocorr.diag(M41_6); autocorr.plot(M41_6, lagmax=20); acfplot(M41_6) # auto-correlations
+
+gelman.diag(M41_7, confidence=0.95); gelman.plot(M41_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M41_7, smooth=TRUE); 
+autocorr.diag(M41_7); autocorr.plot(M41_7, lagmax=20); acfplot(M41_7) # auto-correlations
+
 #--------------------------------------
 # M42 (N+1 effect,  measured with GD):
 data<- data6[,3:4]; 
 M42_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M42.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M42_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M42_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M42_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M42_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M42_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M42_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M42_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M42_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M42<- coda.samples(M42_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum42<- summary(M42); sum42
+sum42<- summary(M42); sum42; sum42; save(sum42, file= "Summaries/N1/sum42.Rda")
+M42_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M42_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M42_2<- coda.samples(M42_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum42_2<- summary(M42_2); save(sum42_2, file= "Summaries/N1/sum42_2.Rda")
+M42_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M42_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M42_3<- coda.samples(M42_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum42_3<- summary(M42_3); save(sum42_3, file= "Summaries/N1/sum42_3.Rda")
+M42_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M42_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M42_4<- coda.samples(M42_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum42_4<- summary(M42_4); save(sum42_4, file= "Summaries/N1/sum42_4.Rda")
+M42_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M42_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M42_5<- coda.samples(M42_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum42_5<- summary(M42_5); save(sum42_5, file= "Summaries/N1/sum42_5.Rda")
+M42_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M42_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M42_6<- coda.samples(M42_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum42_6<- summary(M42_6); save(sum42_6, file= "Summaries/N1/sum42_6.Rda")
+M42_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M42_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M42_7<- coda.samples(M42_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum42_7<- summary(M42_7); save(sum42_7, file= "Summaries/N1/sum42_7.Rda")
 
 # Diagnostics
 #plot(M42, trace=FALSE)
@@ -1511,29 +1614,93 @@ gelman.diag(M42, confidence=0.95); gelman.plot(M42, confidence=0.95) # Gelman an
 traceplot(M42, smooth=TRUE); 
 autocorr.diag(M42); autocorr.plot(M42, lagmax=20); acfplot(M42) # auto-correlations
 
+gelman.diag(M42_2, confidence=0.95); gelman.plot(M42_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M42_2, smooth=TRUE); 
+autocorr.diag(M42_2); autocorr.plot(M42_2, lagmax=20); acfplot(M42_2) # auto-correlations
+
+gelman.diag(M42_3, confidence=0.95); gelman.plot(M42_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M42_3, smooth=TRUE); 
+autocorr.diag(M42_3); autocorr.plot(M42_3, lagmax=20); acfplot(M42_3) # auto-correlations
+
+gelman.diag(M42_4, confidence=0.95); gelman.plot(M42_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M42_4, smooth=TRUE); 
+autocorr.diag(M42_4); autocorr.plot(M42_4, lagmax=20); acfplot(M42_4) # auto-correlations
+
+gelman.diag(M42_5, confidence=0.95); gelman.plot(M42_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M42_5, smooth=TRUE); 
+autocorr.diag(M42_5); autocorr.plot(M42_5, lagmax=20); acfplot(M42_5) # auto-correlations
+
+gelman.diag(M42_6, confidence=0.95); gelman.plot(M42_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M42_6, smooth=TRUE); 
+autocorr.diag(M42_6); autocorr.plot(M42_6, lagmax=20); acfplot(M42_6) # auto-correlations
+
+gelman.diag(M42_7, confidence=0.95); gelman.plot(M42_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M42_7, smooth=TRUE); 
+autocorr.diag(M42_7); autocorr.plot(M42_7, lagmax=20); acfplot(M42_7) # auto-correlations
 
 #--------------------------------------
 # M43 (N+1 effect,  measured with TVT):
 data<- data8[,3:4]; 
 M43_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M43.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M43_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M43_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M43_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M43_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M43_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M43_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M43_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M43_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M43<- coda.samples(M43_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum43<- summary(M43); sum43
+sum43<- summary(M43); sum43; save(sum43, file= "Summaries/N1/sum43.Rda")
+M43_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M43_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M43_2<- coda.samples(M43_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum43_2<- summary(M43_2); save(sum43_2, file= "Summaries/N1/sum43_2.Rda")
+M43_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M43_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M43_3<- coda.samples(M43_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum43_3<- summary(M43_3); save(sum43_3, file= "Summaries/N1/sum43_3.Rda")
+M43_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M43_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M43_4<- coda.samples(M43_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum43_4<- summary(M43_4); save(sum43_4, file= "Summaries/N1/sum43_4.Rda")
+M43_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M43_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M43_5<- coda.samples(M43_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum43_5<- summary(M43_5); save(sum43_5, file= "Summaries/N1/sum43_5.Rda")
+M43_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M43_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M43_6<- coda.samples(M43_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum43_6<- summary(M43_6); save(sum43_6, file= "Summaries/N1/sum43_6.Rda")
+M43_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M43_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M43_7<- coda.samples(M43_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum43_7<- summary(M43_7); save(sum43_7, file= "Summaries/N1/sum43_7.Rda")
+
 
 # Diagnostics
 #plot(M43, trace=FALSE)
 gelman.diag(M43, confidence=0.95); gelman.plot(M43, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
 traceplot(M43, smooth=TRUE); 
 autocorr.diag(M43); autocorr.plot(M43, lagmax=20); acfplot(M43) # auto-correlations
+
+gelman.diag(M43_2, confidence=0.95); gelman.plot(M43_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M43_2, smooth=TRUE); 
+autocorr.diag(M43_2); autocorr.plot(M43_2, lagmax=20); acfplot(M43_2) # auto-correlations
+
+gelman.diag(M43_3, confidence=0.95); gelman.plot(M43_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M43_3, smooth=TRUE); 
+autocorr.diag(M43_3); autocorr.plot(M43_3, lagmax=20); acfplot(M43_3) # auto-correlations
+
+gelman.diag(M43_4, confidence=0.95); gelman.plot(M43_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M43_4, smooth=TRUE); 
+autocorr.diag(M43_4); autocorr.plot(M43_4, lagmax=20); acfplot(M43_4) # auto-correlations
+
+gelman.diag(M43_5, confidence=0.95); gelman.plot(M43_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M43_5, smooth=TRUE); 
+autocorr.diag(M43_5); autocorr.plot(M43_5, lagmax=20); acfplot(M43_5) # auto-correlations
+
+gelman.diag(M43_6, confidence=0.95); gelman.plot(M43_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M43_6, smooth=TRUE); 
+autocorr.diag(M43_6); autocorr.plot(M43_6, lagmax=20); acfplot(M43_6) # auto-correlations
+
+gelman.diag(M43_7, confidence=0.95); gelman.plot(M43_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M43_7, smooth=TRUE); 
+autocorr.diag(M43_7); autocorr.plot(M43_7, lagmax=20); acfplot(M43_7) # auto-correlations
 
 
 ########################
@@ -1545,18 +1712,36 @@ autocorr.diag(M43); autocorr.plot(M43, lagmax=20); acfplot(M43) # auto-correlati
 # M44 (N+1 effect,  measured with FFD):
 data<- data5[,2:4]; data<- subset(data, Language!= "Chinese"); data<- data[,2:3];
 M44_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M44.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M44_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M44_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M44_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M44_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M44_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M44_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M44_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M44_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M44<- coda.samples(M44_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum44<- summary(M44); sum44
+sum44<- summary(M44); sum44; save(sum44, file= "Summaries/N1/sum44.Rda")
+M44_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M44_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M44_2<- coda.samples(M44_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum44_2<- summary(M44_2); save(sum44_2, file= "Summaries/N1/sum44_2.Rda")
+M44_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M44_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M44_3<- coda.samples(M44_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum44_3<- summary(M44_3); save(sum44_3, file= "Summaries/N1/sum44_3.Rda")
+M44_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M44_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M44_4<- coda.samples(M44_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum44_4<- summary(M44_4); save(sum44_4, file= "Summaries/N1/sum44_4.Rda")
+M44_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M44_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M44_5<- coda.samples(M44_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum44_5<- summary(M44_5); save(sum44_5, file= "Summaries/N1/sum44_5.Rda")
+M44_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M44_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M44_6<- coda.samples(M44_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum44_6<- summary(M44_6); save(sum44_6, file= "Summaries/N1/sum44_6.Rda")
+M44_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M44_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M44_7<- coda.samples(M44_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum44_7<- summary(M44_7); save(sum44_7, file= "Summaries/N1/sum44_7.Rda")
+
+
 
 # Diagnostics
 #plot(M44, trace=FALSE)
@@ -1564,22 +1749,63 @@ gelman.diag(M44, confidence=0.95); gelman.plot(M44, confidence=0.95) # Gelman an
 traceplot(M44, smooth=TRUE); 
 autocorr.diag(M44); autocorr.plot(M44, lagmax=20); acfplot(M44) # auto-correlations
 
+gelman.diag(M44_2, confidence=0.95); gelman.plot(M44_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M44_2, smooth=TRUE); 
+autocorr.diag(M44_2); autocorr.plot(M44_2, lagmax=20); acfplot(M44_2) # auto-correlations
+
+gelman.diag(M44_3, confidence=0.95); gelman.plot(M44_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M44_3, smooth=TRUE); 
+autocorr.diag(M44_3); autocorr.plot(M44_3, lagmax=20); acfplot(M44_3) # auto-correlations
+
+gelman.diag(M44_4, confidence=0.95); gelman.plot(M44_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M44_4, smooth=TRUE); 
+autocorr.diag(M44_4); autocorr.plot(M44_4, lagmax=20); acfplot(M44_4) # auto-correlations
+
+gelman.diag(M44_5, confidence=0.95); gelman.plot(M44_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M44_5, smooth=TRUE); 
+autocorr.diag(M44_5); autocorr.plot(M44_5, lagmax=20); acfplot(M44_5) # auto-correlations
+
+gelman.diag(M44_6, confidence=0.95); gelman.plot(M44_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M44_6, smooth=TRUE); 
+autocorr.diag(M44_6); autocorr.plot(M44_6, lagmax=20); acfplot(M44_6) # auto-correlations
+
+gelman.diag(M44_7, confidence=0.95); gelman.plot(M44_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M44_7, smooth=TRUE); 
+autocorr.diag(M44_7); autocorr.plot(M44_7, lagmax=20); acfplot(M44_7) # auto-correlations
+
 #--------------------------------------
 # M45 (N+1 effect,  measured with SFD):
 data<- data7[,2:4]; data<- subset(data, Language!= "Chinese"); data<- data[,2:3];
 M45_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M45.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M45_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M45_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M45_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M45_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M45_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M45_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M45_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M45_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M45<- coda.samples(M45_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum45<- summary(M45); sum45
+sum45<- summary(M45); sum45; save(sum45, file= "Summaries/N1/sum45.Rda")
+M45_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M45_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M45_2<- coda.samples(M45_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum45_2<- summary(M45_2); save(sum45_2, file= "Summaries/N1/sum45_2.Rda")
+M45_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M45_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M45_3<- coda.samples(M45_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum45_3<- summary(M45_3); save(sum45_3, file= "Summaries/N1/sum45_3.Rda")
+M45_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M45_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M45_4<- coda.samples(M45_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum45_4<- summary(M45_4); save(sum45_4, file= "Summaries/N1/sum45_4.Rda")
+M45_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M45_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M45_5<- coda.samples(M45_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum45_5<- summary(M45_5); save(sum45_5, file= "Summaries/N1/sum45_5.Rda")
+M45_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M45_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M45_6<- coda.samples(M45_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum45_6<- summary(M45_6); save(sum45_6, file= "Summaries/N1/sum45_6.Rda")
+M45_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M45_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M45_7<- coda.samples(M45_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum45_7<- summary(M45_7); save(sum45_7, file= "Summaries/N1/sum45_7.Rda")
+
 
 # Diagnostics
 #plot(M45, trace=FALSE)
@@ -1587,22 +1813,63 @@ gelman.diag(M45, confidence=0.95); gelman.plot(M45, confidence=0.95) # Gelman an
 traceplot(M45, smooth=TRUE); 
 autocorr.diag(M45); autocorr.plot(M45, lagmax=20); acfplot(M45) # auto-correlations
 
+gelman.diag(M45_2, confidence=0.95); gelman.plot(M45_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M45_2, smooth=TRUE); 
+autocorr.diag(M45_2); autocorr.plot(M45_2, lagmax=20); acfplot(M45_2) # auto-correlations
+
+gelman.diag(M45_3, confidence=0.95); gelman.plot(M45_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M45_3, smooth=TRUE); 
+autocorr.diag(M45_3); autocorr.plot(M45_3, lagmax=20); acfplot(M45_3) # auto-correlations
+
+gelman.diag(M45_4, confidence=0.95); gelman.plot(M45_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M45_4, smooth=TRUE); 
+autocorr.diag(M45_4); autocorr.plot(M45_4, lagmax=20); acfplot(M45_4) # auto-correlations
+
+gelman.diag(M45_5, confidence=0.95); gelman.plot(M45_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M45_5, smooth=TRUE); 
+autocorr.diag(M45_5); autocorr.plot(M45_5, lagmax=20); acfplot(M45_5) # auto-correlations
+
+gelman.diag(M45_6, confidence=0.95); gelman.plot(M45_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M45_6, smooth=TRUE); 
+autocorr.diag(M45_6); autocorr.plot(M45_6, lagmax=20); acfplot(M45_6) # auto-correlations
+
+gelman.diag(M45_7, confidence=0.95); gelman.plot(M45_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M45_7, smooth=TRUE); 
+autocorr.diag(M45_7); autocorr.plot(M45_7, lagmax=20); acfplot(M45_7) # auto-correlations
+
 #--------------------------------------
 # M46 (N+1 effect,  measured with GD):
 data<- data6[,2:4]; data<- subset(data, Language!= "Chinese"); data<- data[,2:3];
 M46_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M46.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M46_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M46_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M46_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M46_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M46_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M46_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M46_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M46_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M46<- coda.samples(M46_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum46<- summary(M46); sum46
+sum46<- summary(M46); sum46; save(sum46, file= "Summaries/N1/sum46.Rda")
+M46_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M46_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M46_2<- coda.samples(M46_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum46_2<- summary(M46_2); save(sum46_2, file= "Summaries/N1/sum46_2.Rda")
+M46_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M46_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M46_3<- coda.samples(M46_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum46_3<- summary(M46_3); save(sum46_3, file= "Summaries/N1/sum46_3.Rda")
+M46_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M46_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M46_4<- coda.samples(M46_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum46_4<- summary(M46_4); save(sum46_4, file= "Summaries/N1/sum46_4.Rda")
+M46_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M46_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M46_5<- coda.samples(M46_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum46_5<- summary(M46_5); save(sum46_5, file= "Summaries/N1/sum46_5.Rda")
+M46_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M46_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M46_6<- coda.samples(M46_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum46_6<- summary(M46_6); save(sum46_6, file= "Summaries/N1/sum46_6.Rda")
+M46_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M46_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M46_7<- coda.samples(M46_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum46_7<- summary(M46_7); save(sum46_7, file= "Summaries/N1/sum46_7.Rda")
+
 
 # Diagnostics
 #plot(M46, trace=FALSE)
@@ -1610,23 +1877,63 @@ gelman.diag(M46, confidence=0.95); gelman.plot(M46, confidence=0.95) # Gelman an
 traceplot(M46, smooth=TRUE); 
 autocorr.diag(M46); autocorr.plot(M46, lagmax=20); acfplot(M46) # auto-correlations
 
+gelman.diag(M46_2, confidence=0.95); gelman.plot(M46_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M46_2, smooth=TRUE); 
+autocorr.diag(M46_2); autocorr.plot(M46_2, lagmax=20); acfplot(M46_2) # auto-correlations
+
+gelman.diag(M46_3, confidence=0.95); gelman.plot(M46_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M46_3, smooth=TRUE); 
+autocorr.diag(M46_3); autocorr.plot(M46_3, lagmax=20); acfplot(M46_3) # auto-correlations
+
+gelman.diag(M46_4, confidence=0.95); gelman.plot(M46_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M46_4, smooth=TRUE); 
+autocorr.diag(M46_4); autocorr.plot(M46_4, lagmax=20); acfplot(M46_4) # auto-correlations
+
+gelman.diag(M46_5, confidence=0.95); gelman.plot(M46_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M46_5, smooth=TRUE); 
+autocorr.diag(M46_5); autocorr.plot(M46_5, lagmax=20); acfplot(M46_5) # auto-correlations
+
+gelman.diag(M46_6, confidence=0.95); gelman.plot(M46_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M46_6, smooth=TRUE); 
+autocorr.diag(M46_6); autocorr.plot(M46_6, lagmax=20); acfplot(M46_6) # auto-correlations
+
+gelman.diag(M46_7, confidence=0.95); gelman.plot(M46_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M46_7, smooth=TRUE); 
+autocorr.diag(M46_7); autocorr.plot(M46_7, lagmax=20); acfplot(M46_7) # auto-correlations
 
 #--------------------------------------
 # M47 (N+1 effect,  measured with TVT): SAME AS IN PREVIOUS SUB-SECTION
 data<- data8[,2:4]; data<- subset(data, Language!= "Chinese"); data<- data[,2:3];
 M47_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M47.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M47_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M47_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M47_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M47_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M47_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M47_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M47_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M47_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M47<- coda.samples(M47_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum47<- summary(M47); sum47
+sum47<- summary(M47); sum47; save(sum47, file= "Summaries/N1/sum47.Rda")
+M47_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M47_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M47_2<- coda.samples(M47_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum47_2<- summary(M47_2); save(sum47_2, file= "Summaries/N1/sum47_2.Rda")
+M47_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M47_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M47_3<- coda.samples(M47_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum47_3<- summary(M47_3); save(sum47_3, file= "Summaries/N1/sum47_3.Rda")
+M47_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M47_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M47_4<- coda.samples(M47_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum47_4<- summary(M47_4); save(sum47_4, file= "Summaries/N1/sum47_4.Rda")
+M47_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M47_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M47_5<- coda.samples(M47_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum47_5<- summary(M47_5); save(sum47_5, file= "Summaries/N1/sum47_5.Rda")
+M47_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M47_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M47_6<- coda.samples(M47_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum47_6<- summary(M47_6); save(sum47_6, file= "Summaries/N1/sum47_6.Rda")
+M47_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M47_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M47_7<- coda.samples(M47_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum47_7<- summary(M47_7); save(sum47_7, file= "Summaries/N1/sum47_7.Rda")
+
 
 # Diagnostics
 #plot(M47, trace=FALSE)
@@ -1634,6 +1941,29 @@ gelman.diag(M47, confidence=0.95); gelman.plot(M47, confidence=0.95) # Gelman an
 traceplot(M47, smooth=TRUE); 
 autocorr.diag(M47); autocorr.plot(M47, lagmax=20); acfplot(M47) # auto-correlations
 
+gelman.diag(M47_2, confidence=0.95); gelman.plot(M47_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M47_2, smooth=TRUE); 
+autocorr.diag(M47_2); autocorr.plot(M47_2, lagmax=20); acfplot(M47_2) # auto-correlations
+
+gelman.diag(M47_3, confidence=0.95); gelman.plot(M47_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M47_3, smooth=TRUE); 
+autocorr.diag(M47_3); autocorr.plot(M47_3, lagmax=20); acfplot(M47_3) # auto-correlations
+
+gelman.diag(M47_4, confidence=0.95); gelman.plot(M47_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M47_4, smooth=TRUE); 
+autocorr.diag(M47_4); autocorr.plot(M47_4, lagmax=20); acfplot(M47_4) # auto-correlations
+
+gelman.diag(M47_5, confidence=0.95); gelman.plot(M47_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M47_5, smooth=TRUE); 
+autocorr.diag(M47_5); autocorr.plot(M47_5, lagmax=20); acfplot(M47_5) # auto-correlations
+
+gelman.diag(M47_6, confidence=0.95); gelman.plot(M47_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M47_6, smooth=TRUE); 
+autocorr.diag(M47_6); autocorr.plot(M47_6, lagmax=20); acfplot(M47_6) # auto-correlations
+
+gelman.diag(M47_7, confidence=0.95); gelman.plot(M47_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M47_7, smooth=TRUE); 
+autocorr.diag(M47_7); autocorr.plot(M47_7, lagmax=20); acfplot(M47_7) # auto-correlations
 
 
 ############################
@@ -1645,18 +1975,35 @@ autocorr.diag(M47); autocorr.plot(M47, lagmax=20); acfplot(M47) # auto-correlati
 # M48 (N+1 effect,  measured with FFD):
 data<- data5[,2:4]; data<- subset(data, Language== "Chinese"); data<- data[,2:3];
 M48_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M48.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M48_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M48_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M48_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M48_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M48_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M48_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M48_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M48_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M48<- coda.samples(M48_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum48<- summary(M48); sum48
+sum48<- summary(M48); sum48; save(sum48, file= "Summaries/N1/sum48.Rda")
+M48_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M48_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M48_2<- coda.samples(M48_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum48_2<- summary(M48_2); save(sum48_2, file= "Summaries/N1/sum48_2.Rda")
+M48_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M48_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M48_3<- coda.samples(M48_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum48_3<- summary(M48_3); save(sum48_3, file= "Summaries/N1/sum48_3.Rda")
+M48_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M48_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M48_4<- coda.samples(M48_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum48_4<- summary(M48_4); save(sum48_4, file= "Summaries/N1/sum48_4.Rda")
+M48_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M48_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M48_5<- coda.samples(M48_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum48_5<- summary(M48_5); save(sum48_5, file= "Summaries/N1/sum48_5.Rda")
+M48_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M48_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M48_6<- coda.samples(M48_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum48_6<- summary(M48_6); save(sum48_6, file= "Summaries/N1/sum48_6.Rda")
+M48_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M48_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M48_7<- coda.samples(M48_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum48_7<- summary(M48_7); save(sum48_7, file= "Summaries/N1/sum48_7.Rda")
+
 
 # Diagnostics
 #plot(M48, trace=FALSE)
@@ -1664,22 +2011,63 @@ gelman.diag(M48, confidence=0.95); gelman.plot(M48, confidence=0.95) # Gelman an
 traceplot(M48, smooth=TRUE); 
 autocorr.diag(M48); autocorr.plot(M48, lagmax=20); acfplot(M48) # auto-correlations
 
+gelman.diag(M48_2, confidence=0.95); gelman.plot(M48_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M48_2, smooth=TRUE); 
+autocorr.diag(M48_2); autocorr.plot(M48_2, lagmax=20); acfplot(M48_2) # auto-correlations
+
+gelman.diag(M48_3, confidence=0.95); gelman.plot(M48_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M48_3, smooth=TRUE); 
+autocorr.diag(M48_3); autocorr.plot(M48_3, lagmax=20); acfplot(M48_3) # auto-correlations
+
+gelman.diag(M48_4, confidence=0.95); gelman.plot(M48_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M48_4, smooth=TRUE); 
+autocorr.diag(M48_4); autocorr.plot(M48_4, lagmax=20); acfplot(M48_4) # auto-correlations
+
+gelman.diag(M48_5, confidence=0.95); gelman.plot(M48_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M48_5, smooth=TRUE); 
+autocorr.diag(M48_5); autocorr.plot(M48_5, lagmax=20); acfplot(M48_5) # auto-correlations
+
+gelman.diag(M48_6, confidence=0.95); gelman.plot(M48_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M48_6, smooth=TRUE); 
+autocorr.diag(M48_6); autocorr.plot(M48_6, lagmax=20); acfplot(M48_6) # auto-correlations
+
+gelman.diag(M48_7, confidence=0.95); gelman.plot(M48_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M48_7, smooth=TRUE); 
+autocorr.diag(M48_7); autocorr.plot(M48_7, lagmax=20); acfplot(M48_7) # auto-correlations
+
 #--------------------------------------
 # M49 (N+1 effect,  measured with SFD):
 data<- data7[,2:4]; data<- subset(data, Language== "Chinese"); data<- data[,2:3];
 M49_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M49.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M49_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M49_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M49_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M49_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M49_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M49_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M49_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M49_5.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M49<- coda.samples(M49_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum49<- summary(M49); sum49
+sum49<- summary(M49); sum49; save(sum49, file= "Summaries/N1/sum49.Rda")
+M49_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M49_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M49_2<- coda.samples(M49_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum49_2<- summary(M49_2); save(sum49_2, file= "Summaries/N1/sum49_2.Rda")
+M49_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M49_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M49_3<- coda.samples(M49_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum49_3<- summary(M49_3); save(sum49_3, file= "Summaries/N1/sum49_3.Rda")
+M49_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M49_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M49_4<- coda.samples(M49_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum49_4<- summary(M49_4); save(sum49_4, file= "Summaries/N1/sum49_4.Rda")
+M49_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M49_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M49_5<- coda.samples(M49_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum49_5<- summary(M49_5); save(sum49_5, file= "Summaries/N1/sum49_5.Rda")
+M49_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M49_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M49_6<- coda.samples(M49_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum49_6<- summary(M49_6); save(sum49_6, file= "Summaries/N1/sum49_6.Rda")
+M49_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M49_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M49_7<- coda.samples(M49_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum49_7<- summary(M49_7); save(sum49_7, file= "Summaries/N1/sum49_7.Rda")
+
 
 # Diagnostics
 #plot(M49, trace=FALSE)
@@ -1687,22 +2075,63 @@ gelman.diag(M49, confidence=0.95); gelman.plot(M49, confidence=0.95) # Gelman an
 traceplot(M49, smooth=TRUE); 
 autocorr.diag(M49); autocorr.plot(M49, lagmax=20); acfplot(M49) # auto-correlations
 
+gelman.diag(M49_2, confidence=0.95); gelman.plot(M49_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M49_2, smooth=TRUE); 
+autocorr.diag(M49_2); autocorr.plot(M49_2, lagmax=20); acfplot(M49_2) # auto-correlations
+
+gelman.diag(M49_3, confidence=0.95); gelman.plot(M49_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M49_3, smooth=TRUE); 
+autocorr.diag(M49_3); autocorr.plot(M49_3, lagmax=20); acfplot(M49_3) # auto-correlations
+
+gelman.diag(M49_4, confidence=0.95); gelman.plot(M49_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M49_4, smooth=TRUE); 
+autocorr.diag(M49_4); autocorr.plot(M49_4, lagmax=20); acfplot(M49_4) # auto-correlations
+
+gelman.diag(M49_5, confidence=0.95); gelman.plot(M49_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M49_5, smooth=TRUE); 
+autocorr.diag(M49_5); autocorr.plot(M49_5, lagmax=20); acfplot(M49_5) # auto-correlations
+
+gelman.diag(M49_6, confidence=0.95); gelman.plot(M49_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M49_6, smooth=TRUE); 
+autocorr.diag(M49_6); autocorr.plot(M49_6, lagmax=20); acfplot(M49_6) # auto-correlations
+
+gelman.diag(M49_7, confidence=0.95); gelman.plot(M49_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M49_7, smooth=TRUE); 
+autocorr.diag(M49_7); autocorr.plot(M49_7, lagmax=20); acfplot(M49_7) # auto-correlations
+
 #--------------------------------------
 # M50 (N+1 effect,  measured with GD):
 data<- data6[,2:4]; data<- subset(data, Language== "Chinese"); data<- data[,2:3];
 M50_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M50.txt"),
-                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # uniform prior on mu
-#M50_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M50_2.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
-#                  inits= list("mu"=20, "tau"=5))
-#M50_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M50_3.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M50_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M50_4.txt"),
-#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-M50_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M50_5.txt"),
-                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+                   data, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
 M50<- coda.samples(M50_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
-sum50<- summary(M50); sum50
+sum50<- summary(M50); sum50; save(sum50, file= "Summaries/N1/sum50.Rda")
+M50_2M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M50_2.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
+                  inits= list("mu"=20, "tau"=5))
+M50_2<- coda.samples(M50_2M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum50_2<- summary(M50_2); save(sum50_2, file= "Summaries/N1/sum50_2.Rda")
+M50_3M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M50_3.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M50_3<- coda.samples(M50_3M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum50_3<- summary(M50_3); save(sum50_3, file= "Summaries/N1/sum50_3.Rda")
+M50_4M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M50_4.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M50_4<- coda.samples(M50_4M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum50_4<- summary(M50_4); save(sum50_4, file= "Summaries/N1/sum50_4.Rda")
+M50_5M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M50_5.txt"),
+                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M50_5<- coda.samples(M50_5M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum50_5<- summary(M50_5); save(sum50_5, file= "Summaries/N1/sum50_5.Rda")
+M50_6M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M50_6.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M50_6<- coda.samples(M50_6M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum50_6<- summary(M50_6); save(sum50_6, file= "Summaries/N1/sum50_6.Rda")
+M50_7M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M50_7.txt"),
+                    data, n.chains=3, n.adapt=3000, quiet=FALSE)
+M50_7<- coda.samples(M50_7M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
+sum50_7<- summary(M50_7); save(sum50_7, file= "Summaries/N1/sum50_7.Rda")
+
 
 # Diagnostics
 #plot(M50, trace=FALSE)
@@ -1710,7 +2139,29 @@ gelman.diag(M50, confidence=0.95); gelman.plot(M50, confidence=0.95) # Gelman an
 traceplot(M50, smooth=TRUE); 
 autocorr.diag(M50); autocorr.plot(M50, lagmax=20); acfplot(M50) # auto-correlations
 
+gelman.diag(M50_2, confidence=0.95); gelman.plot(M50_2, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M50_2, smooth=TRUE); 
+autocorr.diag(M50_2); autocorr.plot(M50_2, lagmax=20); acfplot(M50_2) # auto-correlations
 
+gelman.diag(M50_3, confidence=0.95); gelman.plot(M50_3, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M50_3, smooth=TRUE); 
+autocorr.diag(M50_3); autocorr.plot(M50_3, lagmax=20); acfplot(M50_3) # auto-correlations
+
+gelman.diag(M50_4, confidence=0.95); gelman.plot(M50_4, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M50_4, smooth=TRUE); 
+autocorr.diag(M50_4); autocorr.plot(M50_4, lagmax=20); acfplot(M50_4) # auto-correlations
+
+gelman.diag(M50_5, confidence=0.95); gelman.plot(M50_5, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M50_5, smooth=TRUE); 
+autocorr.diag(M50_5); autocorr.plot(M50_5, lagmax=20); acfplot(M50_5) # auto-correlations
+
+gelman.diag(M50_6, confidence=0.95); gelman.plot(M50_6, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M50_6, smooth=TRUE); 
+autocorr.diag(M50_6); autocorr.plot(M50_6, lagmax=20); acfplot(M50_6) # auto-correlations
+
+gelman.diag(M50_7, confidence=0.95); gelman.plot(M50_7, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(M50_7, smooth=TRUE); 
+autocorr.diag(M50_7); autocorr.plot(M50_7, lagmax=20); acfplot(M50_7) # auto-correlations
 
 
 #----------------------
@@ -1722,19 +2173,22 @@ source("sensitivity_analysis.R")
 #FFD
 data<- data5[,3:4]; 
 Sens1<- sensitivity_analysis(data, "dunif(-200, 200)", "dunif(0, 200)") 
+save(Sens1, file= "Summaries/Sensitivity/N1_FFD.Rda")
 
 #SFD
 data<- data7[,3:4]; 
 Sens2<- sensitivity_analysis(data, "dunif(-200, 200)", "dunif(0, 200)") 
+save(Sens2, file= "Summaries/Sensitivity/N1_SFD.Rda")
 
 #GD
 data<- data6[,3:4]; 
 Sens3<- sensitivity_analysis(data, "dunif(-200, 200)", "dunif(0, 200)") 
+save(Sens3, file= "Summaries/Sensitivity/N1_GD.Rda")
 
 #TVT
 data<- data8[,3:4]; 
 Sens4<- sensitivity_analysis(data, "dunif(-200, 200)", "dunif(0, 200)") 
-
+save(Sens4, file= "Summaries/Sensitivity/N1_TVT.Rda")
 
 
 
