@@ -35,6 +35,7 @@ for(i in 1:nrow(data)){
 year[44]<- "0"
 studies[34]<- "Yang et al. (2012a)"; studies[31]<- "Yang et al. (2012b)"
 studies[32]<- "Yang et al. (2012b), Exp.2"
+studies[30]<- "Hyönä et al. (2005)"
 studies[23]<- "Rayner et al. (2014b)"
 studies[27]<- "Rayner et al. (2014a)"
 studies[7]<- "Angele et al. (2013a)"
@@ -83,9 +84,9 @@ df<- df[order(year, studies, decreasing = T),]
        labels=c("", toString(margs[1]), toString(margs[2]), toString(margs[3]), toString(margs[4]), toString(margs[5]),
                 toString(margs[6]), toString(margs[7]), toString(margs[8]), toString(margs[9]), 
                 toString(margs[10]), toString(margs[11]), "" ), 
-       tick=T, cex.axis=1.2)
+       tick=T, cex.axis=1.4)
   
-  mtext("Effect size (in ms)", side=4, line= 3, cex=1.4, font=2)  
+  mtext("Effect size (in ms)", side=4, line= 3, cex=1.5, font=2)  
   
   # plot y grid
   for (i in 1:nrow(df)){
@@ -122,7 +123,7 @@ for (i in 1:nrow(df)){
 }    
   
   # posterior mean:
-#  abline(h=sum42$statistics[1,1], lwd=1.2, lty=1, col="darkred")
+#  abline(h=sum42$statistics[1,1], lwd=1.2, lty=2, col="darkred")
   
 # pooled mean:
   points(x= (97.3/100)*maxX, y=sum42$statistics[1,1], pch = 18, cex=2.2, col="darkred")
@@ -157,15 +158,15 @@ for (i in 1:nrow(df)){
   
   # Plot study label  
   for (i in 1:nrow(df)){
-    text(x=start+step*i, y=58, df$studies[i], cex=1.2, font=2, srt = 90, adj=1)
+    text(x=start+step*i, y=58, df$studies[i], cex=1.3, font=2, srt = 90, adj=1)
     segments(x0=start+step*i, y0=59, x1=start+step*i, y1=60, lwd=1.2, lty=1, col="black")
   }
 
   
-  text(x=(97.3/100)*maxX, y=58, "Posterior mean", cex=1.4, font=2, srt = 90, adj=1)
+  text(x=(97.3/100)*maxX, y=58, "Posterior mean", cex=1.5, font=2, srt = 90, adj=1)
   
   
-  mtext("Studies", side=1, line= -17, cex=1.4, font=2)
+  mtext("Studies", side=1, line= -17, cex=1.5, font=2)
   
   dev.off() 
   

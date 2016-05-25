@@ -78,9 +78,9 @@ df<- df[order(year, studies, decreasing = T),]
   axis(side=4, at=c(margs[1], margs[2], margs[3], margs[4], margs[5], margs[6], margs[7], margs[8], margs[9], margs[10], margs[11]), 
        labels=c(toString(margs[1]), toString(margs[2]), toString(margs[3]), toString(margs[4]), toString(margs[5]),
                 toString(margs[6]), toString(margs[7]), toString(margs[8]), toString(margs[9]), toString(margs[10]), "" ), 
-       tick=T, cex.axis=1.2)
+       tick=T, cex.axis=1.4)
   
-  mtext("Effect size (in ms)", side=4, line= 3, cex=1.4, font=2)  
+  mtext("Effect size (in ms)", side=4, line= 3, cex=1.5, font=2)  
   
   # plot y grid
   for (i in 1:nrow(df)){
@@ -152,15 +152,15 @@ for (i in 1:nrow(df)){
   
   # Plot study label  
   for (i in 1:nrow(df)){
-    text(x=start+step*i, y=58, df$studies[i], cex=1.2, font=2, srt = 90, adj=1)
+    text(x=start+step*i, y=58, df$studies[i], cex=1.3, font=2, srt = 90, adj=1)
     segments(x0=start+step*i, y0=58.8, x1=start+step*i, y1=59.8, lwd=1.2, lty=1, col="black")
   }
 
   
-  text(x=(97.3/100)*maxX, y=58, "Posterior mean", cex=1.4, font=2, srt = 90, adj=1)
+  text(x=(97.3/100)*maxX, y=58, "Posterior mean", cex=1.5, font=2, srt = 90, adj=1)
   
   
-  mtext("Studies", side=1, line= -25, cex=1.4, font=2)
+  mtext("Studies", side=1, line= -25, cex=1.5, font=2)
   
   dev.off() 
   
