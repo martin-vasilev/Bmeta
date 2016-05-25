@@ -126,9 +126,9 @@ Mu30_2= round(sum6_7$statistics[1,1],2); Mu30_2_SD= round(sum6_7$statistics[1,2]
 Tau30_2= round(sum6_7$statistics[2,1],2); Tau30_2_SD= round(sum6_7$statistics[2,2],2);Tau30_2CI= round(c(sum6_7$quantiles[2,1], sum6_7$quantiles[2,5]) ,2); Tau30_2CI<- paste(Tau30_2CI[1], ", ", Tau30_2CI[2], sep="")
 ```
 
-N+2 preview effects on word N+2 for all studies [FFD]
+Mean N+2 Preview Effect on Word N+2 for All Studies [FFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu1` (`r Mu1_SD`) [`r Mu1CI`] |`r Tau1` (`r Tau1_SD`) [`r Tau1CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu2` (`r Mu2_SD`) [`r Mu2CI`] |`r Tau2` (`r Tau2_SD`) [`r Tau2CI`]|
@@ -140,9 +140,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu5_2` (`r Mu5_2_SD`) [`r Mu5_2C
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+2 preview effects on word N+2 only for alphabetical studies [FFD]
+Mean N+2 Preview Effect on Word N+2 Only for Alphabetical Studies [FFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu6` (`r Mu6_SD`) [`r Mu6CI`] |`r Tau6` (`r Tau6_SD`) [`r Tau6CI`]|
 Normal(0, $100^2$)|Uniform(0, 200)     |`r Mu7` (`r Mu7_SD`) [`r Mu7CI`] |`r Tau7` (`r Tau7_SD`) [`r Tau7CI`]|
@@ -154,9 +154,9 @@ Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu10_2` (`r Mu10_2_SD`) [`r Mu10_
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+2 preview effects on word N+2 for all studies [GD]
+Mean N+2 Preview Effect on Word N+2 for All Studies [GD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu11` (`r Mu11_SD`) [`r Mu11CI`] |`r Tau11` (`r Tau11_SD`) [`r Tau11CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu12` (`r Mu12_SD`) [`r Mu12CI`] |`r Tau12` (`r Tau12_SD`) [`r Tau12CI`]|
@@ -169,9 +169,9 @@ Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu15_2` (`r Mu15_2_SD`) [`r Mu15_
 
 
 
-N+2 preview effects on word N+2 only for alphabetical studies [GD]
+Mean N+2 Preview Effect on Word N+2 Only for Alphabetical Studies [GD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu16` (`r Mu16_SD`) [`r Mu16CI`] |`r Tau16` (`r Tau16_SD`) [`r Tau16CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu17` (`r Mu17_SD`) [`r Mu17CI`] |`r Tau17` (`r Tau17_SD`) [`r Tau17CI`]|
@@ -183,9 +183,9 @@ Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu20_2` (`r Mu20_2_SD`) [`r Mu20_
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+2 preview effects on word N+1 [FFD]
+Mean N+2 Preview Effect on Word N+1 [FFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu21` (`r Mu21_SD`) [`r Mu21CI`] |`r Tau21` (`r Tau21_SD`) [`r Tau21CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu22` (`r Mu22_SD`) [`r Mu22CI`] |`r Tau22` (`r Tau22_SD`) [`r Tau22CI`]|
@@ -198,9 +198,9 @@ Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu25_2` (`r Mu25_2_SD`) [`r Mu25_
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+2 preview effects on word N+1 [GD]
+Mean N+2 Preview Effect on Word N+1 [GD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu26` (`r Mu26_SD`) [`r Mu26CI`] |`r Tau26` (`r Tau26_SD`) [`r Tau26CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu27` (`r Mu27_SD`) [`r Mu27CI`] |`r Tau27` (`r Tau27_SD`) [`r Tau27CI`]|

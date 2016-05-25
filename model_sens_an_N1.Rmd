@@ -264,9 +264,9 @@ Mu66= round(sum50_7$statistics[1,1],2); Mu66_SD= round(sum50_7$statistics[1,2],2
 Tau66= round(sum50_7$statistics[2,1],2); Tau66_SD= round(sum50_7$statistics[2,2],2);Tau66CI= round(c(sum50_7$quantiles[2,1], sum50_7$quantiles[2,5]) ,2); Tau66CI<- paste(Tau66CI[1], ", ", Tau66CI[2], sep="")
 ```
 
-N+1 preview effect for all languages [FFD]
+Mean N+1 Preview Effect for All Languages [FFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu1` (`r Mu1_SD`) [`r Mu1CI`] |`r Tau1` (`r Tau1_SD`) [`r Tau1CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu2` (`r Mu2_SD`) [`r Mu2CI`] |`r Tau2` (`r Tau2_SD`) [`r Tau2CI`]|
@@ -278,9 +278,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu6` (`r Mu6_SD`) [`r Mu6CI`] |`
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for all languages [SFD]
+Mean N+1 Preview Effect for All Languages [SFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu7` (`r Mu7_SD`) [`r Mu7CI`] |`r Tau7` (`r Tau7_SD`) [`r Tau7CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu8` (`r Mu8_SD`) [`r Mu8CI`] |`r Tau8` (`r Tau8_SD`) [`r Tau8CI`]|
@@ -292,9 +292,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu12` (`r Mu12_SD`) [`r Mu12CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for all languages [GD]
+Mean N+1 Preview Effect for All Languages [GD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu13` (`r Mu13_SD`) [`r Mu13CI`] |`r Tau13` (`r Tau13_SD`) [`r Tau13CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu14` (`r Mu14_SD`) [`r Mu14CI`] |`r Tau14` (`r Tau14_SD`) [`r Tau14CI`]|
@@ -306,9 +306,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu18` (`r Mu18_SD`) [`r Mu18CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for all languages [TVT]
+Mean N+1 Preview Effect for All Languages [TVT]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu19` (`r Mu19_SD`) [`r Mu19CI`] |`r Tau19` (`r Tau19_SD`) [`r Tau19CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu20` (`r Mu20_SD`) [`r Mu20CI`] |`r Tau20` (`r Tau20_SD`) [`r Tau20CI`]|
@@ -320,9 +320,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu24` (`r Mu24_SD`) [`r Mu24CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for alphabetical studies [FFD]
+Mean N+1 Preview Effect for Alphabetical Studies [FFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu25` (`r Mu25_SD`) [`r Mu25CI`] |`r Tau25` (`r Tau25_SD`) [`r Tau25CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu26` (`r Mu26_SD`) [`r Mu26CI`] |`r Tau26` (`r Tau26_SD`) [`r Tau26CI`]|
@@ -335,9 +335,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu30` (`r Mu30_SD`) [`r Mu30CI`]
 
 
 
-N+1 preview effect for alphabetical studies [SFD]
+Mean N+1 Preview Effect for Alphabetical Studies [SFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu31` (`r Mu31_SD`) [`r Mu31CI`] |`r Tau31` (`r Tau31_SD`) [`r Tau31CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu32` (`r Mu32_SD`) [`r Mu32CI`] |`r Tau32` (`r Tau32_SD`) [`r Tau32CI`]|
@@ -349,9 +349,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu36` (`r Mu36_SD`) [`r Mu36CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for alphabetical studies [GD]
+Mean N+1 Preview Effect for Alphabetical Studies [GD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu37` (`r Mu37_SD`) [`r Mu37CI`] |`r Tau37` (`r Tau37_SD`) [`r Tau37CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu38` (`r Mu38_SD`) [`r Mu38CI`] |`r Tau38` (`r Tau38_SD`) [`r Tau38CI`]|
@@ -363,9 +363,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu42` (`r Mu42_SD`) [`r Mu42CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for alphabetical studies [TVT]
+Mean N+1 Preview Effect for Alphabetical Studies [TVT]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu43` (`r Mu43_SD`) [`r Mu43CI`] |`r Tau43` (`r Tau43_SD`) [`r Tau43CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu44` (`r Mu44_SD`) [`r Mu44CI`] |`r Tau44` (`r Tau44_SD`) [`r Tau44CI`]|
@@ -377,9 +377,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu48` (`r Mu48_SD`) [`r Mu48CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for Chinese studies [FFD]
+Mean N+1 Preview Effect for Chinese Studies [FFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu49` (`r Mu49_SD`) [`r Mu49CI`] |`r Tau49` (`r Tau49_SD`) [`r Tau49CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu50` (`r Mu50_SD`) [`r Mu50CI`] |`r Tau50` (`r Tau50_SD`) [`r Tau50CI`]|
@@ -391,9 +391,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu54` (`r Mu54_SD`) [`r Mu54CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for Chinese studies [SFD]
+Mean N+1 Preview Effect for Chinese Studies [SFD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu55` (`r Mu55_SD`) [`r Mu55CI`] |`r Tau55` (`r Tau55_SD`) [`r Tau55CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu56` (`r Mu56_SD`) [`r Mu56CI`] |`r Tau56` (`r Tau56_SD`) [`r Tau56CI`]|
@@ -405,9 +405,9 @@ Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu60` (`r Mu60_SD`) [`r Mu60CI`]
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
 
 
-N+1 preview effect for Chinese studies [TVT]
+Mean N+1 Preview Effect for Chinese Studies [GD]
 -----------------------------------------------------------------------------------------------------------
-Prior on $\mu$   | Prior on $\tau$   | Posterior $\mu$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
+Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
 **Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu61` (`r Mu61_SD`) [`r Mu61CI`] |`r Tau61` (`r Tau61_SD`) [`r Tau61CI`]|
 Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu62` (`r Mu62_SD`) [`r Mu62CI`] |`r Tau62` (`r Tau62_SD`) [`r Tau62CI`]|
