@@ -235,11 +235,15 @@ M1_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M1
 #M1_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M1_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M1_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M1_3.txt"),
+#M1_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M1_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M1_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M1_4.txt"),
+#M1_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M1_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M1_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M1_5.txt"),
+#M1_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M1_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M1_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M1_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M1_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M1_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M1<- coda.samples(M1_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum1<- summary(M1); sum1
@@ -258,11 +262,15 @@ M2_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M2
 #M2_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M2_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M2_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M2_3.txt"),
+#M2_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M2_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M2_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M2_4.txt"),
+#M2_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M2_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M2_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M2_5.txt"),
+#M2_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M2_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M2_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M2_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M2_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M2_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M2<- coda.samples(M2_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum2<- summary(M2); sum2
@@ -281,11 +289,15 @@ M3_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M3
 #M3_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M3_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M3_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M3_3.txt"),
+#M3_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M3_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M3_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M3_4.txt"),
+#M3_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M3_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M3_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M3_5.txt"),
+#M3_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M3_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M3_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M3_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M3_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M3_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M3<- coda.samples(M3_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum3<- summary(M3); sum3
@@ -305,11 +317,15 @@ M4_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M4
 #M4_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M4_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M4_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M4_3.txt"),
+#M4_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M4_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M4_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M4_4.txt"),
+#M4_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M4_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M4_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M4_5.txt"),
+#M4_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M4_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M4_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M4_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M4_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M4_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M4<- coda.samples(M4_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum4<- summary(M4); sum4
@@ -332,11 +348,15 @@ M5_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M5
 #M5_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M5_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M5_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M5_3.txt"),
+#M5_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M5_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M5_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M5_4.txt"),
+#M5_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M5_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M5_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M5_5.txt"),
+#M5_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M5_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M5_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M5_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M5_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M5_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M5<- coda.samples(M5_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum5<- summary(M5); sum5
@@ -355,11 +375,15 @@ M6_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M6
 #M6_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M6_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M6_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M6_3.txt"),
+#M6_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M6_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M6_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M6_4.txt"),
+#M6_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M6_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M6_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M6_5.txt"),
+#M6_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M6_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M6_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M6_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M6_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M6_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M6<- coda.samples(M6_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum6<- summary(M6); sum6
@@ -378,11 +402,15 @@ M7_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M7
 #M7_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M7_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M7_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M7_3.txt"),
+#M7_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M7_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M7_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M7_4.txt"),
+#M7_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M7_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M7_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M7_5.txt"),
+#M7_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M7_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M7_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M7_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M7_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M7_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M7<- coda.samples(M7_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum7<- summary(M7); sum7
@@ -402,11 +430,15 @@ M8_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M8
 #M8_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M8_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M8_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M8_3.txt"),
+#M8_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M8_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M8_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M8_4.txt"),
+#M8_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M8_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M8_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M8_5.txt"),
+#M8_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M8_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M8_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M8_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M8_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M8_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M8<- coda.samples(M8_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum8<- summary(M8); sum8
@@ -430,11 +462,15 @@ M9_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M9
 #M9_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M9_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M9_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M9_3.txt"),
+#M9_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M9_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M9_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M9_4.txt"),
+#M9_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M9_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M9_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M9_5.txt"),
+#M9_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M9_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M9_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M9_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M9_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M9_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M9<- coda.samples(M9_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum9<- summary(M9); sum9
@@ -454,11 +490,15 @@ M10_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M10_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M10_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M10_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M10_3.txt"),
+#M10_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M10_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M10_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M10_4.txt"),
+#M10_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M10_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M10_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M10_5.txt"),
+#M10_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M10_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M10_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M10_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M10_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M10_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M10<- coda.samples(M10_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum10<- summary(M10); sum10
@@ -481,11 +521,15 @@ M11_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M11_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M11_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M11_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M11_3.txt"),
+#M11_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M11_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M11_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M11_4.txt"),
+#M11_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M11_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M11_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M11_5.txt"),
+#M11_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M11_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M11_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M11_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M11_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M11_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M11<- coda.samples(M11_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum11<- summary(M11); sum11
@@ -504,11 +548,15 @@ M12_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M12_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M12_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M12_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M12_3.txt"),
+#M12_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M12_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M12_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M12_4.txt"),
+#M12_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M12_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M12_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M12_5.txt"),
+#M12_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M12_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M12_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M12_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M12_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M12_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M12<- coda.samples(M12_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum12<- summary(M12); sum12
@@ -527,11 +575,15 @@ M13_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M13_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M13_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M13_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M13_3.txt"),
+#M13_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M13_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M13_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M13_4.txt"),
+#M13_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M13_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M13_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M13_5.txt"),
+#M13_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M13_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M13_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M13_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M13_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M13_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M13<- coda.samples(M13_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum13<- summary(M13); sum13
@@ -551,11 +603,15 @@ M14_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M14_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M14_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M14_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M14_3.txt"),
+#M14_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M14_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M14_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M14_4.txt"),
+#M14_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M14_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M14_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M14_5.txt"),
+#M14_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M14_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M14_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M14_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M14_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M14_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M14<- coda.samples(M14_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum14<- summary(M14); sum14
@@ -579,11 +635,15 @@ M15_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M15_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M15_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M15_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M15_3.txt"),
+#M15_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M15_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M15_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M15_4.txt"),
+#M15_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M15_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M15_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M15_5.txt"),
+#M15_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M15_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M15_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M15_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M15_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M15_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M15<- coda.samples(M15_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum15<- summary(M15); sum15
@@ -602,11 +662,15 @@ M16_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M16_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M16_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M16_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M16_3.txt"),
+#M16_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M16_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M16_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M16_4.txt"),
+#M16_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M16_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M16_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M16_5.txt"),
+#M16_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M16_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M16_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M16_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M16_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M16_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M16<- coda.samples(M16_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum16<- summary(M16); sum16
@@ -625,11 +689,15 @@ M17_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M17_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M17_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M17_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M17_3.txt"),
+#M17_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M17_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M17_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M17_4.txt"),
+#M17_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M17_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M17_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M17_5.txt"),
+#M17_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M17_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M17_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M17_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M17_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M17_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M17<- coda.samples(M17_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum17<- summary(M17); sum17
@@ -648,11 +716,15 @@ M18_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M18_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M18_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M18_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M18_3.txt"),
+#M18_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M18_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M18_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M18_4.txt"),
+#M18_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M18_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M18_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M18_5.txt"),
+#M18_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M18_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M18_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M18_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M18_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M18_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M18<- coda.samples(M18_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum18<- summary(M18); sum18
@@ -675,11 +747,15 @@ M19_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M19_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M19_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M19_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M19_3.txt"),
+#M19_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M19_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M19_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M19_4.txt"),
+#M19_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M19_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M19_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M19_5.txt"),
+#M19_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M19_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M19_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M19_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M19_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M19_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M19<- coda.samples(M19_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum19<- summary(M19); sum19
@@ -698,11 +774,15 @@ M20_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M20_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M20_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M20_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M20_3.txt"),
+#M20_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M20_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M20_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M20_4.txt"),
+#M20_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M20_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M20_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M20_5.txt"),
+#M20_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M20_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M20_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M20_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M20_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M20_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M20<- coda.samples(M20_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum20<- summary(M20); sum20
@@ -721,11 +801,15 @@ M21_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M21_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M21_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M21_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M21_3.txt"),
+#M21_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M21_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M21_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M21_4.txt"),
+#M21_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M21_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M21_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M21_5.txt"),
+#M21_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M21_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M21_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M21_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M21_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M21_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M21<- coda.samples(M21_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum21<- summary(M21); sum21
@@ -748,11 +832,15 @@ M22_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M22_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M22_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M22_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M22_3.txt"),
+#M22_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M22_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M22_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M22_4.txt"),
+#M22_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M22_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M22_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M22_5.txt"),
+#M22_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M22_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M22_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M22_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M22_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M22_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M22<- coda.samples(M22_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum22<- summary(M22); sum22
@@ -772,11 +860,15 @@ M23_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M23_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M23_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M23_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M23_3.txt"),
+#M23_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M23_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M23_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M23_4.txt"),
+#M23_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M23_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M23_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M23_5.txt"),
+#M23_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M23_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M23_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M23_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M23_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M23_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M23<- coda.samples(M23_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum23<- summary(M23); sum23
@@ -916,11 +1008,15 @@ M24_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M24_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M24_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M24_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M24_3.txt"),
+#M24_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M24_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M24_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M24_4.txt"),
+#M24_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M24_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M24_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M24_5.txt"),
+#M24_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M24_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M24_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M24_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M24_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M24_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M24<- coda.samples(M24_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum24<- summary(M24); sum24
@@ -939,11 +1035,15 @@ M25_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M25_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M25_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M25_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M25_3.txt"),
+#M25_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M25_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M25_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M25_4.txt"),
+#M25_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M25_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M25_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M25_5.txt"),
+#M25_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M25_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M25_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M25_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M25_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M25_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M25<- coda.samples(M25_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum25<- summary(M25); sum25
@@ -962,11 +1062,15 @@ M26_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M26_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M26_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M26_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M26_3.txt"),
+#M26_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M26_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M26_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M26_4.txt"),
+#M26_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M26_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M26_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M26_5.txt"),
+#M26_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M26_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M26_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M26_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M26_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M26_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M26<- coda.samples(M26_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum26<- summary(M26); sum26
@@ -999,11 +1103,15 @@ M27_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M27_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M27_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M27_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M27_3.txt"),
+#M27_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M27_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M27_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M27_4.txt"),
+#M27_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M27_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M27_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M27_5.txt"),
+#M27_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M27_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M27_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M27_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M27_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M27_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M27<- coda.samples(M27_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum27<- summary(M27); sum27
@@ -1028,11 +1136,15 @@ M28_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M28_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M28_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M28_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M28_3.txt"),
+#M28_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M28_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M28_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M28_4.txt"),
+#M28_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M28_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M28_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M28_5.txt"),
+#M28_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M28_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M28_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M28_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M28_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M28_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M28<- coda.samples(M28_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum28<- summary(M28); sum28
@@ -1061,11 +1173,15 @@ M29_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M29_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M29_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M29_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M29_3.txt"),
+#M29_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M29_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M29_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M29_4.txt"),
+#M29_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M29_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M29_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M29_5.txt"),
+#M29_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M29_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M29_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M29_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M29_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M29_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M29<- coda.samples(M29_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum29<- summary(M29); sum29
@@ -1084,11 +1200,15 @@ M30_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M30_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M30_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M30_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M30_3.txt"),
+#M30_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M30_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M30_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M30_4.txt"),
+#M30_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M30_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M30_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M30_5.txt"),
+#M30_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M30_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M30_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M30_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M30_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M30_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M30<- coda.samples(M30_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum30<- summary(M30); sum30
@@ -1107,11 +1227,15 @@ M31_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M31_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M31_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M31_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M31_3.txt"),
+#M31_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M31_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M31_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M31_4.txt"),
+#M31_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M31_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M31_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M31_5.txt"),
+#M31_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M31_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M31_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M31_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M31_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M31_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M31<- coda.samples(M31_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum31<- summary(M31); sum31
@@ -1149,11 +1273,15 @@ M32_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M32_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M32_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M32_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M32_3.txt"),
+#M32_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M32_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M32_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M32_4.txt"),
+#M32_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M32_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M32_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M32_5.txt"),
+#M32_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M32_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M32_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M32_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M32_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M32_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M32<- coda.samples(M32_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum32<- summary(M32); sum32
@@ -1176,11 +1304,15 @@ M33_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M33_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M33_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M33_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M33_3.txt"),
+#M33_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M33_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M33_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M33_4.txt"),
+#M33_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M33_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M33_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M33_5.txt"),
+#M33_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M33_5.txt"),
+#                   data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M33_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M33_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M33_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M33_7.txt"),
 #                   data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M33<- coda.samples(M33_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum33<- summary(M33); sum33
@@ -1200,11 +1332,15 @@ M34_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M34_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M34_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M34_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dunif(0, 200)", nrow(data), "N1_M34_3.txt"),
+#M34_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M34_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M34_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M34_4.txt"),
+#M34_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M34_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M34_M <-jags.model(JModel("dnorm(0, 1.0E-3)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M34_5.txt"),
+#M34_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M34_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M34_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M34_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M34_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M34_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M34<- coda.samples(M34_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum34<- summary(M34); sum34
@@ -1291,11 +1427,15 @@ M35_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M35_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M35_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M35_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M35_3.txt"),
+#M35_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M35_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M35_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M35_4.txt"),
+#M35_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M35_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M35_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M35_5.txt"),
+#M35_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M35_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M35_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M35_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M35_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M35_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M35<- coda.samples(M35_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum35<- summary(M35); sum35
@@ -1314,11 +1454,15 @@ M36_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M36_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M36_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M36_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M36_3.txt"),
+#M36_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M36_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M36_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M36_4.txt"),
+#M36_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M36_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M36_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M36_5.txt"),
+#M36_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M36_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M36_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M36_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M36_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M36_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M36<- coda.samples(M36_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum36<- summary(M36); sum36
@@ -1337,11 +1481,15 @@ M37_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M37_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M37_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M37_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M37_3.txt"),
+#M37_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M37_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M37_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M37_4.txt"),
+#M37_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M37_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M37_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M37_5.txt"),
+#M37_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M37_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M37_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M37_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M37_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M37_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M37<- coda.samples(M37_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum37<- summary(M37); sum37
@@ -1365,11 +1513,15 @@ M38_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M38_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M38_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M38_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M38_3.txt"),
+#M38_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M38_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M38_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M38_4.txt"),
+#M38_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M38_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M38_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M38_5.txt"),
+#M38_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M38_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M38_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M38_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M38_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M38_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M38<- coda.samples(M38_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum38<- summary(M38); sum38
@@ -1388,11 +1540,15 @@ M39_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M
 #M39_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(data), "N1_M39_2.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE,
 #                  inits= list("mu"=20, "tau"=5))
-#M39_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dunif(0, 200)", nrow(data), "N1_M39_3.txt"),
+#M39_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dunif(0, 200)", nrow(data), "N1_M39_3.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M39_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M39_4.txt"),
+#M39_M <-jags.model(JModel("dunif(-200, 200)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M39_4.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
-#M39_M <-jags.model(JModel("dnorm(0, 1.0E-5)", "dgamma(5.0E-1, 5.0E-3)", nrow(data), "N1_M39_5.txt"),
+#M39_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dgamma(1.0E-3, 1.0E-3)", nrow(data), "N1_M39_5.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M39_M <-jags.model(JModel("dunif(-200, 200)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M39_6.txt"),
+#                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
+#M39_M <-jags.model(JModel("dnorm(0, 1.0E-4)", "dnorm(0, 1/100^2)  I(0, )", nrow(data), "N1_M39_7.txt"),
 #                  data, n.chains=3, n.adapt=3000, quiet=FALSE)
 M39<- coda.samples(M39_M, c('mu', 'tau', 'theta'), n.iter=75000, thin=5)
 sum39<- summary(M39); sum39
