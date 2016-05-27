@@ -62,7 +62,10 @@ T<-ES_N2$FFD_ms
 
 data1<-data.frame(T,V)
 colnames(data1)<- c('T','S.sqr')
+FFD<- data1 
+FFD$cov<- dataN2$N1len
 data1<- data1[ord,] # re-order data
+FFD<- FFD[ord,] # re-order data
 
 # Alphabetical-only:
 data1a<-data1[-ch,]
@@ -75,7 +78,10 @@ T<-ES_N2$Gaze_ms
 
 data2<-data.frame(T,V[])
 colnames(data2)<- c('T','S.sqr')
+GD<- data2
+GD$cov<- dataN2$N1len
 data2<- data2[ord,] # re-order data
+GD<- GD[ord,] # re-order data
 
 # Alphabetical-only:
 data2a<-data2[-ch,]
@@ -769,49 +775,84 @@ prob1<- NULL; prob2<- NULL; prob3<- NULL; prob3<- NULL; seq1<- NULL
   dev.off() 
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   # N+2 on word n+2:
-  source("ECDF_plot.R")
+#  source("ECDF_plot.R")
+#  
+#  Plot1<-ECDF_plot(S1, S2, S3, "FFD")
+#  Plot2<-ECDF_plot(S7, S8, S9, "GD")
+#  library(gridExtra)
+# grid.arrange(Plot1, Plot2, main= 'Probability that Mu is bigger than some number X (word n+2)',
+#               legend=grid.legend(labels=c(expression(paste(mu, " ~ N(0, 1/10" ^ "3", ")    ")),
+#                                           expression(paste(mu, " ~ N(0, 1/10", ")    ")), 
+#                                           expression(paste(mu, " ~ N(0, 0.5", ")    "))),
+#                                  draw=TRUE, gp=gpar(fontsize=14, 
+#                                                     col = c("black", "#ED6666", "lightseagreen"),lwd=3), 
+#                                  vgap = unit(5, "points"),pch=15,
+#                                  do.lines = TRUE))
   
-  Plot1<-ECDF_plot(S1, S2, S3, "FFD")
-  Plot2<-ECDF_plot(S7, S8, S9, "GD")
-  library(gridExtra)
-  grid.arrange(Plot1, Plot2, main= 'Probability that Mu is bigger than some number X (word n+2)',
-               legend=grid.legend(labels=c(expression(paste(mu, " ~ N(0, 1/10" ^ "3", ")    ")),
-                                           expression(paste(mu, " ~ N(0, 1/10", ")    ")), 
-                                           expression(paste(mu, " ~ N(0, 0.5", ")    "))),
-                                  draw=TRUE, gp=gpar(fontsize=14, 
-                                                     col = c("black", "#ED6666", "lightseagreen"),lwd=3), 
-                                  vgap = unit(5, "points"),pch=15,
-                                  do.lines = TRUE))
-  
-  #---------------------
-  # Additional analyses:  
-  #---------------------
+
   
   
   
+#############################################
+#  Bayesian random-effects meta-regression  #
+#  with word N+1 length as a covariate      #
+#############################################  
+
+# get only alphabetical studies (due the difference of letters vs characters in Chinese) 
+FFD<- subset(FFD, cov>2)  
   
+table(FFD$cov) # check covariate:
+
+plot(FFD$cov, FFD$T) # check scatterplot
+
+source("JReg.R"); library(rjags)
+#FFD$cov<-  as.factor(FFD$cov)
   
+MR1<- jags.model(JReg("dunif(-200, 200)", "dunif(0, 200)", nrow(FFD), "N2_R1.txt"),
+                 FFD, n.chains=3, n.adapt=3000, quiet=FALSE)
+R1<- coda.samples(MR1, c('mu', 'tau', "beta"), n.iter=75000, thin=5)
+sum1<- summary(R1);
+# sum4; save(sum4, file="Summaries/N2/sum4.Rda") # MAIN
+
+plot(R1, trace=FALSE)
+gelman.diag(R1, confidence=0.95); gelman.plot(R1, confidence=0.95) # Gelman and Rubin’s convergence diagnostic
+traceplot(R1, smooth=TRUE); 
+autocorr.diag(R1); autocorr.plot(R1, lagmax=20); acfplot(R1) 
+
+################
+# Plot results #
+################
+FFD<- FFD[order(FFD$cov, decreasing = F),]
+#FFD$cov<- as.numeric(FFD$cov)
+FFD$prec<- 1/FFD$S.sqr
+FFD$weight<- NULL
+
+for(i in 1:nrow(FFD)){
+  
+  FFD$weight[i]<- FFD$prec[i]/sum(FFD$prec)
+}
+FFD$weight<- 2*(FFD$weight/max(FFD$weight)) # so that the most precise study leads to 2x magnification
+
+
+y<- 1:10
+plot (y, type="l", col="white", lty="solid", lwd=2
+      , ylim=c(-5, 20), xlim= c(0, 7)
+      , axes=F, xaxs="i", yaxs="i", cex.lab=1.5) #
+
+
+points(x= FFD$cov, y=FFD$T, pch = 1, cex=1.5 + FFD$weight, col="black")
+
+
+axis(side=1, at=c(0, 1, 2, 3, 4, 5, 6, 7), 
+     labels=c(toString(0), toString(1), toString(2), toString(3), toString(4), 
+              toString(5), toString(6), toString(7)), 
+     tick=T, cex.axis=1.4)
+
+axis(side=2, at=c(-6, -4, -2, 0, 2, 4, 6, 8, 10, 12), 
+     labels=c(toString(-6), toString(-4), toString(-2), toString(0), toString(2), 
+              toString(4), toString(6), toString(8), toString(10), toString(12)), 
+     tick=T, cex.axis=1.4)
+
+
+
