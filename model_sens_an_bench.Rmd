@@ -2,7 +2,7 @@
 title: "Model sensitivity analysis [benchmark data]"
 author: "Martin R. Vasilev"
 date: "May 18, 2016"
-output: word_document
+output: html_document
 ---
 
 ```{r, echo=FALSE}
@@ -269,7 +269,7 @@ Tau66= round(sum11_7$statistics[2,1],2); Tau66_SD= round(sum11_7$statistics[2,2]
 
 ```
 
-Mean Baseline Fixation Durations for All Studies [FFD]
+Mean Baseline Fixation Durations for All Studies [FFD]    
 -----------------------------------------------------------------------------------------------------------
 Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
 -----------------|-----------------  |---------------------------------|-----------------------------------|
@@ -421,3 +421,113 @@ Uniform(0, 1000)   |Normal(0, $100^2$) I(0,)|`r Mu65` (`r Mu65_SD`) [`r Mu65CI`]
 Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu66` (`r Mu66_SD`) [`r Mu66CI`] |`r Tau66` (`r Tau66_SD`) [`r Tau66CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
+
+
+```{r, echo=FALSE}
+# create data frame for plot:
+mean<- c(Mu1, Mu2, Mu3, Mu4, Mu5, Mu6)
+pM<-c("Uniform(0, 800)", "Normal(0, 100^2)", "Uniform(0, 800)", "Normal(0, 100^2)",
+      "Uniform(0, 800)", "Normal(0, 100^2)")
+pT<- c("Uniform(0, 800)", "Uniform(0, 800)", "Gamma(0.001, 0.001)", "Gamma(0.001, 0.001)",
+       "Normal(0, 100^2) I(0,)", "Normal(0, 100^2) I(0,)")
+measure<- c("FFD", "FFD", "FFD", "FFD", "FFD", "FFD")
+CrI_L<- c(sum1$quantiles[1,1], sum1_3$quantiles[1,1], sum1_4$quantiles[1,1],
+          sum1_5$quantiles[1,1], sum1_6$quantiles[1,1], sum1_7$quantiles[1,1])
+CrI_R<- c(sum1$quantiles[1,5], sum1_3$quantiles[1,5], sum1_4$quantiles[1,5],
+          sum1_5$quantiles[1,5], sum1_6$quantiles[1,5], sum1_7$quantiles[1,5])
+
+df1<- data.frame(mean, CrI_L, CrI_R, pM, pT, measure) # FFD
+
+mean<- c(Mu7, Mu8, Mu9, Mu10, Mu11, Mu12)
+pM<-c("Uniform(0, 800)", "Normal(0, 100^2)", "Uniform(0, 800)", "Normal(0, 100^2)",
+      "Uniform(0, 800)", "Normal(0, 100^2)")
+pT<- c("Uniform(0, 800)", "Uniform(0, 800)", "Gamma(0.001, 0.001)", "Gamma(0.001, 0.001)",
+       "Normal(0, 100^2) I(0,)", "Normal(0, 100^2) I(0,)")
+measure<- c("SFD", "SFD", "SFD", "SFD", "SFD", "SFD")
+CrI_L<- c(sum2$quantiles[1,1], sum2_3$quantiles[1,1], sum2_4$quantiles[1,1],
+          sum2_5$quantiles[1,1], sum2_6$quantiles[1,1], sum2_7$quantiles[1,1])
+CrI_R<- c(sum2$quantiles[1,5], sum2_3$quantiles[1,5], sum2_4$quantiles[1,5],
+          sum2_5$quantiles[1,5], sum2_6$quantiles[1,5], sum2_7$quantiles[1,5])
+
+
+df2<- data.frame(mean, CrI_L, CrI_R, pM, pT, measure) # SFD
+
+mean<- c(Mu13, Mu14, Mu15, Mu16, Mu17, Mu18)
+pM<-c("Uniform(0, 1000)", "Normal(0, 100^2)", "Uniform(0, 1000)", "Normal(0, 100^2)",
+      "Uniform(0, 1000)", "Normal(0, 100^2)")
+pT<- c("Uniform(0, 1000)", "Uniform(0, 1000)", "Gamma(0.001, 0.001)", "Gamma(0.001, 0.001)",
+       "Normal(0, 100^2) I(0,)", "Normal(0, 100^2) I(0,)")
+measure<- c("GD", "GD", "GD", "GD", "GD", "GD")
+CrI_L<- c(sum3$quantiles[1,1], sum3_3$quantiles[1,1], sum3_4$quantiles[1,1],
+          sum3_5$quantiles[1,1], sum3_6$quantiles[1,1], sum3_7$quantiles[1,1])
+CrI_R<- c(sum3$quantiles[1,5], sum3_3$quantiles[1,5], sum3_4$quantiles[1,5],
+          sum3_5$quantiles[1,5], sum3_6$quantiles[1,5], sum3_7$quantiles[1,5])
+
+
+df3<- data.frame(mean, CrI_L, CrI_R, pM, pT, measure) # GD
+
+mean<- c(Mu19, Mu20, Mu21, Mu22, Mu23, Mu24)
+pM<-c("Uniform(0, 1000)", "Normal(0, 100^2)", "Uniform(0, 1000)", "Normal(0, 100^2)",
+      "Uniform(0, 1000)", "Normal(0, 100^2)")
+pT<- c("Uniform(0, 1000)", "Uniform(0, 1000)", "Gamma(0.001, 0.001)", "Gamma(0.001, 0.001)",
+       "Normal(0, 100^2) I(0,)", "Normal(0, 100^2) I(0,)")
+measure<- c("TVT", "TVT", "TVT", "TVT", "TVT", "TVT")
+CrI_L<- c(sum4$quantiles[1,1], sum4_3$quantiles[1,1], sum4_4$quantiles[1,1],
+          sum4_5$quantiles[1,1], sum4_6$quantiles[1,1], sum4_7$quantiles[1,1])
+CrI_R<- c(sum4$quantiles[1,5], sum4_3$quantiles[1,5], sum4_4$quantiles[1,5],
+          sum4_5$quantiles[1,5], sum4_6$quantiles[1,5], sum4_7$quantiles[1,5])
+
+
+df4<- data.frame(mean, CrI_L, CrI_R, pM, pT, measure) # TVT
+
+
+df<- rbind(df1, df2, df3, df4) # merge all
+
+t<- expression(paste("Prior on ", theta))
+x<- expression(paste("Prior on ", tau))
+colnames(df)<- c("mean", "CrI_L","CrI_R", "Prior_on_theta", "pT", "measure")
+
+library(grid)
+library(ggplot2)
+
+p1<- subset(df, measure=="FFD" | measure=="SFD")
+
+Plot1 <-ggplot(p1, aes(x=pT, y=mean, colour=Prior_on_theta, shape= Prior_on_theta)) +
+#  scale_y_continuous(breaks=c(240, 260, 280, 300, 320, 340), 
+#                     labels=c("240", "260", "280", "300", "320", "340"))+
+    theme_bw() +geom_point(position=position_dodge(0.5),size=5)+ geom_errorbar(aes(ymin=CrI_L, ymax= CrI_R),position=position_dodge(0.5), size=1)+
+  theme(panel.grid.major = element_line(color="#CCCCCC", size=0.2),panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),axis.title.x = element_text(size=24),
+        axis.title.y = element_text(size=24),
+        axis.text=element_text(size=18),
+        legend.text=element_text(size=20), legend.key.width=unit(1.5,"cm"),
+        legend.position="bottom", legend.title=element_text(size=20, face= "bold")) +
+  xlab(x) + ylab("Posterior estimate (in ms)") +
+  facet_wrap(~measure)+ theme(strip.text.x = element_text(size = 18,  face="bold"),
+        strip.background = element_rect(fill="#F5F7F7"), legend.key = element_rect(colour = "#000000"))
+
+
+p2<- subset(df, measure=="GD" | measure=="TVT")
+
+Plot2 <-ggplot(p2, aes(x=pT, y=mean, colour=Prior_on_theta, shape= Prior_on_theta)) +
+#  scale_y_continuous(breaks=c(240, 260, 280, 300, 320, 340), 
+#                     labels=c("240", "260", "280", "300", "320", "340"))+
+    theme_bw() +geom_point(position=position_dodge(0.5),size=5)+ geom_errorbar(aes(ymin=CrI_L, ymax= CrI_R),position=position_dodge(0.5), size=1)+
+  theme(panel.grid.major = element_line(color="#CCCCCC", size=0.2),panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black"),axis.title.x = element_text(size=24),
+        axis.title.y = element_text(size=24),
+        axis.text=element_text(size=18),
+        legend.text=element_text(size=20), legend.key.width=unit(1.5,"cm"),
+        legend.position="bottom", legend.title=element_text(size=20, face= "bold")) +
+  xlab(x) + ylab("Posterior estimate (in ms)") +
+  facet_wrap(~measure)+ theme(strip.text.x = element_text(size = 18,  face="bold"),
+        strip.background = element_rect(fill="#F5F7F7"), legend.key = element_rect(colour = "#000000"))
+
+```
+
+```{r, fig.width = 22, fig.height = 8, echo=FALSE}
+  
+     Plot1
+     Plot2
+
+```
