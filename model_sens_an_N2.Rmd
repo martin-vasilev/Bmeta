@@ -210,3 +210,66 @@ Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu30` (`r Mu30_SD`) [`r Mu30CI`] 
 Normal(0, $100^2$)|Normal(0, $100^2$) I(0,)|`r Mu30_2` (`r Mu30_2_SD`) [`r Mu30_2CI`] |`r Tau30_2` (`r Tau30_2_SD`) [`r Tau30_2CI`]|
 
 *Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
+
+
+```{r, echo=FALSE}
+# create data frame for plot:
+
+mean<- c(Mu1, Mu2, Mu3, Mu4, Mu5, Mu5_2)
+pM<-c("Uniform(0, 200)", "Normal(0, 100^2)", "Uniform(0, 200)", "Normal(0, 100^2)",
+      "Uniform(0, 200)", "Normal(0, 100^2)")
+pT<- c("Uniform(0, 200)", "Uniform(0, 200)", "Gamma(0.001, 0.001)", "Gamma(0.001, 0.001)",
+       "Normal(0, 100^2) I(0,)", "Normal(0, 100^2) I(0,)")
+measure<- c("FFD", "FFD", "FFD", "FFD", "FFD", "FFD")
+CrI_L<- c(sum1$quantiles[1,1], sum1_3$quantiles[1,1], sum1_4$quantiles[1,1],
+          sum1_5$quantiles[1,1], sum1_6$quantiles[1,1], sum1_7$quantiles[1,1])
+CrI_R<- c(sum1$quantiles[1,5], sum1_3$quantiles[1,5], sum1_4$quantiles[1,5],
+          sum1_5$quantiles[1,5], sum1_6$quantiles[1,5], sum1_7$quantiles[1,5])
+
+df1<- data.frame(mean, CrI_L, CrI_R, pM, pT, measure)
+
+mean<- c(Mu11, Mu12, Mu13, Mu14, Mu15, Mu15_2)
+pM<-c("Uniform(0, 200)", "Normal(0, 100^2)", "Uniform(0, 200)", "Normal(0, 100^2)",
+      "Uniform(0, 200)", "Normal(0, 100^2)")
+pT<- c("Uniform(0, 200)", "Uniform(0, 200)", "Gamma(0.001, 0.001)", "Gamma(0.001, 0.001)",
+       "Normal(0, 100^2) I(0,)", "Normal(0, 100^2) I(0,)")
+measure<- c("GD", "GD", "GD", "GD", "GD", "GD")
+CrI_L<- c(sum3$quantiles[1,1], sum3_3$quantiles[1,1], sum3_4$quantiles[1,1],
+          sum3_5$quantiles[1,1], sum3_6$quantiles[1,1], sum3_7$quantiles[1,1])
+CrI_R<- c(sum3$quantiles[1,5], sum3_3$quantiles[1,5], sum3_4$quantiles[1,5],
+          sum3_5$quantiles[1,5], sum3_6$quantiles[1,5], sum3_7$quantiles[1,5])
+
+
+df2<- data.frame(mean, CrI_L, CrI_R, pM, pT, measure)
+
+df<- rbind(df1, df2)
+
+t<- expression(paste("Prior on ", theta))
+x<- expression(paste("Prior on ", tau))
+#colnames(df)<- c("mean", "CrI_L","CrI_R", "pM", t, "measure")
+
+library(grid)
+library(ggplot2)
+Plot <-ggplot(df, aes(x=pT, y=mean, colour=pM, shape= pM)) +
+  scale_y_continuous(breaks=c(-6, -4, -2, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18), 
+                     labels=c("-6", "-4", "-2", "0", "2", "4", "6", "8", "10", "12",
+                              "14", "16", "18"))+
+    theme_bw() +geom_point(position=position_dodge(0.5),size=5)+ geom_errorbar(aes(ymin=CrI_L, ymax= CrI_R),position=position_dodge(0.5), size=1)+
+  theme(panel.grid.major.y = element_line(color="#E3E3E3", size=0.2),panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  xlab(x) + ylab("Posterior estimate (in ms)") +
+  theme(axis.title.x = element_text(size=18, face="bold"),axis.title.y = element_text(size=18),
+        axis.title.y = element_text(size=18, face="bold"), axis.text=element_text(size=18),
+        legend.title=element_text(size=20, face="bold"),
+        legend.text=element_text(size=20), legend.key.width=unit(1.5,"cm"),
+        legend.position="bottom")+
+  facet_grid(.~measure)+ theme(strip.text.x = element_text(size = 16,  face="bold"),
+        strip.background = element_rect(fill="#F5F7F7"), legend.key = element_rect(colour = "#000000"))
+
+```
+
+```{r, fig.width = 18, fig.height = 8, echo=FALSE}
+  
+     Plot
+
+```
