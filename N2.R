@@ -9,6 +9,7 @@ Effect<-NULL
 Boundary<- NULL
 Language<- NULL
 N <- NULL   # number of subjects
+N1len<- NULL # length (in letters) of word N+1
 
 #N
 FFD_N_val<-NULL; FFD_N_inval<-NULL                     # First fixation duration (N)- mean
@@ -61,6 +62,26 @@ Effect[1]<-"PB"
 Boundary[1]<- 'N+2'
 Language[1]<-'English'
 N[1]<-30
+
+# for calculating exact length, it is necessary to calculate 
+# the meam length from the sentence corpus in the appendix. 
+
+corpus1<- c(nchar("large"), nchar("fuming"), nchar("thick"), nchar("tough"),
+            nchar("large"), nchar("solid"), nchar("stiff"), nchar("dirty"), 
+            nchar("front"), nchar("baked"), nchar("wooden"), nchar("pretty"),
+            nchar("fresh"), nchar("bright"), nchar("rarest"),nchar("heavy"), 
+            nchar("unruly"), nchar("little"), nchar("lofty"), nchar("spicy"),
+            nchar("angry"), nchar("valued"), nchar("three"), nchar("clove"),
+            nchar("fancy"), nchar("large"), nchar("thick"), nchar("jumpy"), 
+            nchar("latest"), nchar("annual"), nchar("funny"), nchar("bored"),
+            nchar("simple"), nchar("rotted"), nchar("wispy"), nchar("secret"),
+            nchar("dance"),nchar("latest"), nchar("funny"), nchar("right"),
+            nchar("moist"), nchar("board"), nchar("family"), nchar("giant"), 
+            nchar("green"), nchar("fancy"), nchar("filthy"), nchar("frozen"),
+            nchar("stupid"), nchar("trite"), nchar("broken"),nchar("ornate"), 
+            nchar("heavy"), nchar("manly"))
+
+N1len[1]<- mean(corpus1)
 #N
 FFD_N_val<-NA; FFD_N_inval<-NA  
 FFD_N_val_SD<-NA; FFD_N_inval_SD<-NA
@@ -110,6 +131,21 @@ Effect[2]<-"PB"
 Boundary[2]<- 'N+2'
 Language[2]<- 'English'
 N[2]<-36
+N1len[2]<- mean(corpus2)
+
+corpus2<- c(nchar("hard"), nchar("open"), nchar("loud"), nchar("rude"), nchar("ripe"), 
+            nchar("rosy"), nchar("bold"), nchar("far"), nchar("dull"), nchar("wide"), 
+            nchar("iron"), nchar("kind"), nchar("tiny"), nchar("cozy"), nchar("big"), 
+            nchar("back"), nchar("bad"), nchar("cold"), nchar("dark"), nchar("old"), 
+            nchar("lone"), nchar("wet"), nchar("weak"), nchar("ugly"), nchar("own"),
+            nchar("rare"), nchar("tall"), nchar("red"), nchar("slim"), nchar("lean"),
+            nchar("male"), nchar("poor"), nchar("busy"), nchar("damp"), nchar("evil"),
+            nchar("fat"), nchar("fair"), nchar("dim"), nchar("lame"), nchar("curt"),
+            nchar("thin"), nchar("lewd"), nchar("oily"), nchar("red"), nchar("gold"),
+            nchar("long"), nchar("bare"), nchar("cool"), nchar("fake"), nchar("flat"),
+            nchar("keen"), nchar("sad"), nchar("vain"), nchar("tidy"), nchar("deaf"),
+            nchar("grim"), nchar("dry"), nchar("wild"), nchar("vile"), nchar("trim"))
+
 #N
 FFD_N_val[2]<-NA; FFD_N_inval[2]<-NA  
 FFD_N_val_SD[2]<-NA; FFD_N_inval_SD[2]<-NA
@@ -162,6 +198,7 @@ Effect[3]<-"PB+PoF"
 Boundary[3]<- 'N+2'
 Language[3]<- 'German'
 N[3]<-30
+N1len[3]<- 3 # explicitly mentioned in the paper 
 #N
 FFD_N_val[3]<-(200+195)/2; FFD_N_inval[3]<-(205+196)/2  # Table 3
 FFD_N_val_SD[3]<-(59+62)/2; FFD_N_inval_SD[3]<-(61+60)/2
@@ -212,6 +249,7 @@ Effect[4]<-"PB + PoF"
 Boundary[4]<- 'N+2'
 Language[4]<- 'Chinese'
 N[4]<-42
+N1len[4]<- 1 # NOTE: here the unit is characters, not letters
 #N
 FFD_N_val[4]<-NA; FFD_N_inval[4]<-NA  
 FFD_N_val_SD[4]<-NA; FFD_N_inval_SD[4]<-NA
@@ -264,6 +302,9 @@ Effect[5]<-"PB+PoF"
 Boundary[5]<- 'N+2'
 Language[5]<- 'Chinese'
 N[5]<-66
+N1len[5]<- 2 # NOTE: here the unit is characters, not letters
+
+
 #N
 FFD_N_val[5]<-NA; FFD_N_inval[5]<-NA  
 FFD_N_val_SD[5]<-NA; FFD_N_inval_SD[5]<-NA
@@ -314,6 +355,7 @@ Effect[6]<-"PB"
 Boundary[6]<- 'N+2'
 Language[6]<- 'Chinese'
 N[6]<-36
+N1len[6]<- 1 # NOTE: here the unit is characters, not letters
 #N
 FFD_N_val[6]<-NA; FFD_N_inval[6]<-NA  # Table 
 FFD_N_val_SD[6]<-NA; FFD_N_inval_SD[6]<-NA
@@ -364,6 +406,8 @@ Effect[7]<-"PB"
 Boundary[7]<- 'N+1/N+2'
 Language[7]<- 'English'
 N[7]<-32
+N1len[7]<- 6 # reported in Table 1 
+
 #N
 FFD_N_val[7]<-229; FFD_N_inval[7]<-226  # Table 2
 FFD_N_val_SD[7]<-32; FFD_N_inval_SD[7]<-30
@@ -415,6 +459,7 @@ Effect[8]<-"PB"
 Boundary[8]<- 'N+2'
 Language[8]<- 'Chinese'
 N[8]<-74-6
+N1len[8]<- 1 # NOTE: here the unit is characters, not letters
 #N
 FFD_N_val[8]<-NA; FFD_N_inval[8]<-NA  # Table 1
 FFD_N_val_SD[8]<-NA; FFD_N_inval_SD[8]<-NA
@@ -467,6 +512,7 @@ Effect[9]<-"PB"
 Boundary[9]<- 'N+2'
 Language[9]<- 'English'
 N[9]<-36
+N1len[9]<- 3 # reported in Table 2 
 #N
 FFD_N_val[9]<-(222+222)/2; FFD_N_inval[9]<-(223+225)/2  # Table 3
 FFD_N_val_SD[9]<-(72+72)/2; FFD_N_inval_SD[9]<-(77+77)/2
@@ -520,8 +566,8 @@ Language[10]<- 'German'
 N[10]<-40  # I take the 'young' sample since it's more similar to previous studies
 # Note, however, that the 'old' one could be included as another study (separate sample) if age
 # is deemed to not be an important confounding factor here
+N1len[10]<- 3 # mentioned on page 452 
 
-#N  
 
 # separate statistics for difficulty of word n+1 (content vs function word) and whether
 # N+1 was fixated. I take the grand mean of them, since I'm interested in the general preview effect  
@@ -575,6 +621,7 @@ Effect[11]<-"PB"
 Boundary[11]<- 'n+1/n+2'
 Language[11]<- 'English'
 N[11]<-32
+N1len[11]<- 3 # Table 5
 # Manipulation of frequency of word n; as usual, I take the grand mean.
 
 #N
@@ -723,7 +770,7 @@ LandPos_N2_val_SD[11]<-NA ; LandPos_N2_inval_SD[11]<-NA
 
 #############################################################################################
 # Merge variables into a data matrix:
-dataN2<- data.frame(ID, Paper, Effect, Boundary,Language,N,FFD_N_val, FFD_N_val_SD, FFD_N_inval,
+dataN2<- data.frame(ID, Paper, Effect, Boundary,Language,N, N1len,FFD_N_val, FFD_N_val_SD, FFD_N_inval,
        FFD_N_inval_SD, Gaze_N_val, Gaze_N_val_SD,Gaze_N_inval, Gaze_N_inval_SD, Total_N_val,
        Total_N_val_SD, Total_N_inval,Total_N_inval_SD, SFD_N_val, SFD_N_inval, SFD_N_val_SD,
        SFD_N_inval_SD, FixProb_N_val, FixProb_N_val_SD, FixProb_N_inval,FixProb_N_inval_SD,
