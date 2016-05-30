@@ -644,9 +644,9 @@ ECDF6<- ecdf(S6);1- ECDF6(1)
 #-------------
 
 source("BforestN2.R")
-Plot<- BforestN2(data1$T, data1$S.sqr, data2$T, data2$S.sqr, unlist(M1_thetaCrI[,1]), 
-                 unlist(M1_thetaCrI[,2]), unlist(M3_thetaCrI[,1]), unlist(M3_thetaCrI[,2]),
-                 M1_meanP, M3_meanP, M2_meanP, M4_meanP, M1_MuCrI, M3_MuCrI, M2_MuCrI, M4_MuCrI)
+Plot<- BforestN2(data1$T, data1$S.sqr, unlist(M1_thetaCrI[,1]), 
+                 unlist(M1_thetaCrI[,2]),
+                 M1_meanP, M2_meanP, M1_MuCrI, M2_MuCrI)
 
 # Save Image:
 png(file = 'Plots/N2forest.png', width = 600, height = 800, units = "px")
@@ -654,6 +654,11 @@ png(file = 'Plots/N2forest.png', width = 600, height = 800, units = "px")
 Plot
 
 dev.off()
+
+
+Plot<- BforestN2(data1$T, data1$S.sqr, data2$T, data2$S.sqr, unlist(M1_thetaCrI[,1]), 
+                 unlist(M1_thetaCrI[,2]), unlist(M3_thetaCrI[,1]), unlist(M3_thetaCrI[,2]),
+                 M1_meanP, M3_meanP, M2_meanP, M4_meanP, M1_MuCrI, M3_MuCrI, M2_MuCrI, M4_MuCrI)
 
 
 #-------------
