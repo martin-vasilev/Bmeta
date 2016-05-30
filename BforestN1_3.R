@@ -88,7 +88,7 @@ png(file = 'Plots/N1forest3.png', width = 700, height = 534, units = "px")
   text(x=-1.7, y=-2, "N. Exp.", cex=1.2, font=2)#TVT
   
   # MEAN TEXT STAMPS:
-  text(x=-2, y=98, "P. Mean", cex=1.2, font=2)#TVT
+  text(x=-2, y=98, "Mean", cex=1.2, font=2)#TVT
   rect(xleft = 0, ybottom = 95, xright = 40, ytop = 100, lwd=1.2, lty = "solid", col="snow1")
   
   # study means:
@@ -98,7 +98,7 @@ png(file = 'Plots/N1forest3.png', width = 700, height = 534, units = "px")
         toString(round(M_PSEUD_FFD, 1)), toString(round(M_PSEUD_GD, 1))), cex=1.2)
   
   
-  text(x=20, y=104, "Non-alphabetical studies", cex=2, font=2)
+  text(x=20, y=104, "Chinese studies", cex=2, font=2)
   
   dev.off() 
   

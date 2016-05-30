@@ -842,11 +842,13 @@ FFD$weight<- 2*(FFD$weight/max(FFD$weight)) # so that the most precise study lea
 
 y<- 1:10
 plot (y, type="l", col="white", lty="solid", lwd=2
-      , ylim=c(-5, 20), xlim= c(0, 7)
-      , axes=F, xaxs="i", yaxs="i", cex.lab=1.5) #
+      , ylim=c(-5, 12), xlim= c(0, 7)
+      , axes=F, xaxs="i", yaxs="i", cex.lab=1.5, xlab="Length of word N+1 (in characters)",
+      ylab= "Effect size (in ms)") #
 
 
-points(x= FFD$cov, y=FFD$T, pch = 1, cex=1.5 + FFD$weight, col="black")
+points(x= FFD$cov, y=FFD$T, pch = 21, cex=2 + FFD$weight, col="black", lwd=1.8,
+       bg= "#E8E8E8")
 
 
 axis(side=1, at=c(0, 1, 2, 3, 4, 5, 6, 7), 
@@ -859,5 +861,14 @@ axis(side=2, at=c(-6, -4, -2, 0, 2, 4, 6, 8, 10, 12),
               toString(4), toString(6), toString(8), toString(10), toString(12)), 
      tick=T, cex.axis=1.4)
 
+abline(0, sum1$statistics[1,1])
+
+
+FFD_3c<- subset(FFD, cov<4); FFD_3c<- FFD_3c[,c(1:2)]
+source("JModel.R")
+M7_M <-jags.model(JModel("dunif(-200, 200)", "dunif(0, 200)", nrow(FFD_3c), "N2_M7.txt"),
+                  FFD_3c, n.chains=3, n.adapt=3000, quiet=FALSE) # MAIN
+M7<- coda.samples(M7_M, c('mu', 'tau','theta'), n.iter=75000, thin=5)
+sum7<- summary(M7); sum7#; save(sum1, file="Summaries/N2/sum1.Rda")
 
 
