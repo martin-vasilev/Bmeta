@@ -780,23 +780,29 @@ prob1<- NULL; prob2<- NULL; prob3<- NULL; prob3<- NULL; seq1<- NULL
   dev.off() 
   
   
-  # N+2 on word n+2:
-#  source("ECDF_plot.R")
-#  
-#  Plot1<-ECDF_plot(S1, S2, S3, "FFD")
-#  Plot2<-ECDF_plot(S7, S8, S9, "GD")
-#  library(gridExtra)
-# grid.arrange(Plot1, Plot2, main= 'Probability that Mu is bigger than some number X (word n+2)',
-#               legend=grid.legend(labels=c(expression(paste(mu, " ~ N(0, 1/10" ^ "3", ")    ")),
-#                                           expression(paste(mu, " ~ N(0, 1/10", ")    ")), 
-#                                           expression(paste(mu, " ~ N(0, 0.5", ")    "))),
-#                                  draw=TRUE, gp=gpar(fontsize=14, 
-#                                                     col = c("black", "#ED6666", "lightseagreen"),lwd=3), 
-#                                  vgap = unit(5, "points"),pch=15,
-#                                  do.lines = TRUE))
-  
 
   
+  
+########################
+# Posterior histograms #
+########################
+  # requested by Reviewer 2
+  
+png(file = 'Plots/N2_hist.png', width = 800, height = 600, units = "px")  
+par(mfrow=c(2,2))
+
+   hist(S1, breaks=30, col="#828282", freq=FALSE, main="All studies (FFD)",
+      xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
+  
+  hist(S3, breaks=30, col="#828282", freq=FALSE, main="All studies (GD)",
+       xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
+  hist(S2, breaks=30, col="#828282", freq=FALSE, main="Alphabetical studies (FFD)",
+       xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
+  
+  hist(S4, breaks=30, col="#828282", freq=FALSE, main="Alphabetical studies (GD)",
+       xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
+  
+dev.off()     
   
   
 #############################################
