@@ -2358,8 +2358,34 @@ S40<-jags.samples(M40_M, variable.names='mu', n.iter=75000, thin=5, n.adapt=3000
 S40<-c(S40$mu[1,,1],S40$mu[1,,2],S40$mu[1,,3])
 ECDF40<- ecdf(S40); ECDF40(29)
 
+S41<-jags.samples(M41_M, variable.names='mu', n.iter=75000, thin=5, n.adapt=3000)
+S41<-c(S41$mu[1,,1],S41$mu[1,,2],S41$mu[1,,3])
+
 S42<-jags.samples(M42_M, variable.names='mu', n.iter=75000, thin=5, n.adapt=3000)
 S42<-c(S42$mu[1,,1],S42$mu[1,,2],S42$mu[1,,3])
 ECDF42<- ecdf(S42); ECDF42(44.5)
 
+S43<-jags.samples(M43_M, variable.names='mu', n.iter=75000, thin=5, n.adapt=3000)
+S43<-c(S43$mu[1,,1],S43$mu[1,,2],S43$mu[1,,3])
+
+########################
+# Posterior histograms #
+########################
+# requested by Reviewer 2
+
+png(file = 'Plots/N1_hist.png', width = 800, height = 600, units = "px")  
+par(mfrow=c(2,2))
+
+hist(S40, breaks=30, col="#828282", freq=FALSE, main="All studies (FFD)",
+     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
+
+hist(S41, breaks=30, col="#828282", freq=FALSE, main="All studies (SFD)",
+     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
+hist(S42, breaks=30, col="#828282", freq=FALSE, main="All studies (GD)",
+     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
+
+hist(S43, breaks=30, col="#828282", freq=FALSE, main="All studies (TVT)",
+     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
+
+dev.off()     
 

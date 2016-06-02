@@ -205,7 +205,7 @@ for (i in 1:nrow(df)){
   #         2nd Plot for Gaze duration                 #
   ######################################################
   
-  png(file = 'Plots/N2forest2_GD.png', width = 1400, height = 1200, units = "px")  
+  png(file = 'Plots/N2forest2_GD.png', width = 1400, height = 800, units = "px")  
 
   
   ############
@@ -350,7 +350,7 @@ for (i in 1:nrow(df)){
   
   
   #  legend:
-  rect(xleft = (99/100)*maxX, ybottom = 30, xright = (94.9/100)*maxX, ytop = 70, lwd=1.8, lty = "solid", col="white") 
+  rect(xleft = (99/100)*maxX, ybottom = 30, xright = (94.9/100)*maxX, ytop =81, lwd=1.8, lty = "solid", col="white") 
   #  observed:
   segments(x0=(96/100)*maxX, y0=32, x1=(96/100)*maxX, y1=43, lwd=2, lty=2, col="black")
   points(x= (96/100)*maxX, y=37.8, pch = 15, cex=2, col="white")
