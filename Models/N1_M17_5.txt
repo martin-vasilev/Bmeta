@@ -1,0 +1,13 @@
+model {
+for (i in 1:25) {
+P[i] <- 1/S.sqr[i]      # Calculate precision
+T[i] ~ dnorm(theta[i], P[i]) # study effects
+theta[i] ~ dnorm(mu, prec) # random effects
+
+}
+mu ~ dnorm(0, 1.0E-4) # mean difference prior
+prec ~ dgamma(1.0E-3, 1.0E-3) # gamma prior on precision
+tau<- 1/sqrt(prec) # tau
+# Note: precision means that studies with smaller
+#       variance are given greater weight.
+}
