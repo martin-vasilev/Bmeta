@@ -4,9 +4,9 @@
 
 # !NOTE: In this version I use uniform prior distributions for mu
 
-##############################################
-# "ULTIMATE" N+1 preview effect at the end!  #
-##############################################
+##########################################################
+# "ULTIMATE" N+1 preview effect at the end! (~line 1590) #
+##########################################################
 
 
 rm(list=ls())

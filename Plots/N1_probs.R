@@ -56,7 +56,7 @@ DB$Measure <- factor(DB$Measure, levels = c("FFD", "SFD",
 # Create graph:
 library(ggplot2)
 
-y<- expression(paste("P(", mu, " > X | Data)"))
+y<- expression(paste("P(", theta, " > X | Data)"))
 #
 Plot <-ggplot(DB, aes(mu, prob, colour=Measure)) + geom_line(size=2)+ theme_bw() +
   theme(panel.grid.major.y = element_line(color="#E3E3E3", size=0.2),panel.grid.minor = element_blank(),
