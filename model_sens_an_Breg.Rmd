@@ -6,44 +6,66 @@ output: html_document
 ---
 
 ```{r, echo=FALSE}
-#Table 1:
-load('Summaries/N1/sum40.Rda'); load('Summaries/N1/sum40_3.Rda');load('Summaries/N1/sum40_4.Rda')
-load('Summaries/N1/sum40_5.Rda'); load('Summaries/N1/sum40_6.Rda'); load('Summaries/N1/sum40_7.Rda'); 
+# uniform prior on beta:
+load('Summaries/N1/sumR1.Rda'); load('Summaries/N1/sumR2.Rda'); load('Summaries/N1/sumR3.Rda');
+load('Summaries/N1/sumR4.Rda'); load('Summaries/N1/sumR5.Rda'); load('Summaries/N1/sumR6.Rda');
+load('Summaries/N1/sumR7.Rda'); load('Summaries/N1/sumR8.Rda');
 
+
+# alt model with normal prior on beta:
+load('Summaries/N1/sumR1_2.Rda'); load('Summaries/N1/sumR2_2.Rda'); load('Summaries/N1/sumR3_2.Rda');
+load('Summaries/N1/sumR4_2.Rda'); load('Summaries/N1/sumR5_2.Rda'); load('Summaries/N1/sumR6_2.Rda');
+load('Summaries/N1/sumR7_2.Rda'); load('Summaries/N1/sumR8_2.Rda');
 ```
 
 ```{r, echo=FALSE}
-# numbers (e.g. Mu1) refer to rows in the table
+# numbers (e.g. Beta1) refer to rows in the table
 
 # Table 1:
-Mu1= round(sum40$statistics[1,1],2); Mu1_SD= round(sum40$statistics[1,2],2);Mu1CI= round(c(sum40$quantiles[1,1], sum40$quantiles[1,5]) ,2); Mu1CI<- paste(Mu1CI[1], ", ", Mu1CI[2], sep="")
-Tau1= round(sum40$statistics[2,1],2); Tau1_SD= round(sum40$statistics[2,2],2);Tau1CI= round(c(sum40$quantiles[2,1], sum40$quantiles[2,5]) ,2); Tau1CI<- paste(Tau1CI[1], ", ", Tau1CI[2], sep="")
+Beta1= round(sumR1$statistics[1,1],2); Beta1_SD= round(sumR1$statistics[1,2],2);Beta1CI= round(c(sumR1$quantiles[1,1], sumR1$quantiles[1,5]) ,2); Beta1CI<- paste(Beta1CI[1], ", ", Beta1CI[2], sep="")
+Beta1_2= round(sumR1_2$statistics[1,1],2); Beta1_2_SD= round(sumR1_2$statistics[1,2],2);Beta1_2CI= round(c(sumR1_2$quantiles[1,1], sumR1_2$quantiles[1,5]) ,2); Beta1_2CI<- paste(Beta1_2CI[1], ", ", Beta1_2CI[2], sep="")
 
-Mu2= round(sum40_3$statistics[1,1],2); Mu2_SD= round(sum40_3$statistics[1,2],2);Mu2CI= round(c(sum40_3$quantiles[1,1], sum40_3$quantiles[1,5]) ,2); Mu2CI<- paste(Mu2CI[1], ", ", Mu2CI[2], sep="")
-Tau2= round(sum40_3$statistics[2,1],2); Tau2_SD= round(sum40_3$statistics[2,2],2);Tau2CI= round(c(sum40_3$quantiles[2,1], sum40_3$quantiles[2,5]) ,2); Tau2CI<- paste(Tau2CI[1], ", ", Tau2CI[2], sep="")
+Beta2= round(sumR2$statistics[1,1],2); Beta2_SD= round(sumR2$statistics[1,2],2);Beta2CI= round(c(sumR2$quantiles[1,1], sumR2$quantiles[1,5]) ,2); Beta2CI<- paste(Beta2CI[1], ", ", Beta2CI[2], sep="")
+Beta2_2= round(sumR2_2$statistics[1,1],2); Beta2_2_SD= round(sumR2_2$statistics[1,2],2);Beta2_2CI= round(c(sumR2_2$quantiles[1,1], sumR2_2$quantiles[1,5]) ,2); Beta2_2CI<- paste(Beta2_2CI[1], ", ", Beta2_2CI[2], sep="")
 
-Mu3= round(sum40_4$statistics[1,1],2); Mu3_SD= round(sum40_4$statistics[1,2],2);Mu3CI= round(c(sum40_4$quantiles[1,1], sum40_4$quantiles[1,5]) ,2); Mu3CI<- paste(Mu3CI[1], ", ", Mu3CI[2], sep="")
-Tau3= round(sum40_4$statistics[2,1],2); Tau3_SD= round(sum40_4$statistics[2,2],2);Tau3CI= round(c(sum40_4$quantiles[2,1], sum40_4$quantiles[2,5]) ,2); Tau3CI<- paste(Tau3CI[1], ", ", Tau3CI[2], sep="")
+Beta3= round(sumR3$statistics[1,1],2); Beta3_SD= round(sumR3$statistics[1,2],2);Beta3CI= round(c(sumR3$quantiles[1,1], sumR3$quantiles[1,5]) ,2); Beta3CI<- paste(Beta3CI[1], ", ", Beta3CI[2], sep="")
+Beta3_2= round(sumR3_2$statistics[1,1],2); Beta3_2_SD= round(sumR3_2$statistics[1,2],2);Beta3_2CI= round(c(sumR3_2$quantiles[1,1], sumR3_2$quantiles[1,5]) ,2); Beta3_2CI<- paste(Beta3_2CI[1], ", ", Beta3_2CI[2], sep="")
 
-Mu4= round(sum40_5$statistics[1,1],2); Mu4_SD= round(sum40_5$statistics[1,2],2);Mu4CI= round(c(sum40_5$quantiles[1,1], sum40_5$quantiles[1,5]) ,2); Mu4CI<- paste(Mu4CI[1], ", ", Mu4CI[2], sep="")
-Tau4= round(sum40_5$statistics[2,1],2); Tau4_SD= round(sum40_5$statistics[2,2],2);Tau4CI= round(c(sum40_5$quantiles[2,1], sum40_5$quantiles[2,5]) ,2); Tau4CI<- paste(Tau4CI[1], ", ", Tau4CI[2], sep="")
+Beta4= round(sumR4$statistics[1,1],2); Beta4_SD= round(sumR4$statistics[1,2],2);Beta4CI= round(c(sumR4$quantiles[1,1], sumR4$quantiles[1,5]) ,2); Beta4CI<- paste(Beta4CI[1], ", ", Beta4CI[2], sep="")
+Beta4_2= round(sumR4_2$statistics[1,1],2); Beta4_2_SD= round(sumR4_2$statistics[1,2],2);Beta4_2CI= round(c(sumR4_2$quantiles[1,1], sumR4_2$quantiles[1,5]) ,2); Beta4_2CI<- paste(Beta4_2CI[1], ", ", Beta4_2CI[2], sep="")
 
-Mu5= round(sum40_6$statistics[1,1],2); Mu5_SD= round(sum40_6$statistics[1,2],2);Mu5CI= round(c(sum40_6$quantiles[1,1], sum40_6$quantiles[1,5]) ,2); Mu5CI<- paste(Mu5CI[1], ", ", Mu5CI[2], sep="")
-Tau5= round(sum40_6$statistics[2,1],2); Tau5_SD= round(sum40_6$statistics[2,2],2);Tau5CI= round(c(sum40_6$quantiles[2,1], sum40_6$quantiles[2,5]) ,2); Tau5CI<- paste(Tau5CI[1], ", ", Tau5CI[2], sep="")
+Beta5= round(sumR5$statistics[1,1],2); Beta5_SD= round(sumR5$statistics[1,2],2);Beta5CI= round(c(sumR5$quantiles[1,1], sumR5$quantiles[1,5]) ,2); Beta5CI<- paste(Beta5CI[1], ", ", Beta5CI[2], sep="")
+Beta5_2= round(sumR5_2$statistics[1,1],2); Beta5_2_SD= round(sumR5_2$statistics[1,2],2);Beta5_2CI= round(c(sumR5_2$quantiles[1,1], sumR5_2$quantiles[1,5]) ,2); Beta5_2CI<- paste(Beta5_2CI[1], ", ", Beta5_2CI[2], sep="")
 
-Mu6= round(sum40_7$statistics[1,1],2); Mu6_SD= round(sum40_7$statistics[1,2],2);Mu6CI= round(c(sum40_7$quantiles[1,1], sum40_7$quantiles[1,5]) ,2); Mu6CI<- paste(Mu6CI[1], ", ", Mu6CI[2], sep="")
-Tau6= round(sum40_7$statistics[2,1],2); Tau6_SD= round(sum40_7$statistics[2,2],2);Tau6CI= round(c(sum40_7$quantiles[2,1], sum40_7$quantiles[2,5]) ,2); Tau6CI<- paste(Tau6CI[1], ", ", Tau6CI[2], sep="")
+Beta6= round(sumR6$statistics[1,1],2); Beta6_SD= round(sumR6$statistics[1,2],2);Beta6CI= round(c(sumR6$quantiles[1,1], sumR6$quantiles[1,5]) ,2); Beta6CI<- paste(Beta6CI[1], ", ", Beta6CI[2], sep="")
+Beta6_2= round(sumR6_2$statistics[1,1],2); Beta6_2_SD= round(sumR6_2$statistics[1,2],2);Beta6_2CI= round(c(sumR6_2$quantiles[1,1], sumR6_2$quantiles[1,5]) ,2); Beta6_2CI<- paste(Beta6_2CI[1], ", ", Beta6_2CI[2], sep="")
+
+Beta7= round(sumR7$statistics[1,1],2); Beta7_SD= round(sumR7$statistics[1,2],2);Beta7CI= round(c(sumR7$quantiles[1,1], sumR7$quantiles[1,5]) ,2); Beta7CI<- paste(Beta7CI[1], ", ", Beta7CI[2], sep="")
+Beta7_2= round(sumR7_2$statistics[1,1],2); Beta7_2_SD= round(sumR7_2$statistics[1,2],2);Beta7_2CI= round(c(sumR7_2$quantiles[1,1], sumR7_2$quantiles[1,5]) ,2); Beta7_2CI<- paste(Beta7_2CI[1], ", ", Beta7_2CI[2], sep="")
+
+Beta8= round(sumR8$statistics[1,1],2); Beta8_SD= round(sumR8$statistics[1,2],2);Beta8CI= round(c(sumR8$quantiles[1,1], sumR8$quantiles[1,5]) ,2); Beta8CI<- paste(Beta8CI[1], ", ", Beta8CI[2], sep="")
+Beta8_2= round(sumR8_2$statistics[1,1],2); Beta8_2_SD= round(sumR8_2$statistics[1,2],2);Beta8_2CI= round(c(sumR8_2$quantiles[1,1], sumR8_2$quantiles[1,5]) ,2); Beta8_2CI<- paste(Beta8_2CI[1], ", ", Beta8_2CI[2], sep="")
 ```
 
-Mean N+1 Preview Effect for All Languages [FFD]
------------------------------------------------------------------------------------------------------------
-Prior on $\theta$   | Prior on $\tau$   | Posterior $\theta$ (SD) [95% CrI]  |Posterior $\tau$ (SD) [95% CrI]    |
------------------|-----------------  |---------------------------------|-----------------------------------|
-**Uniform(-200, 200)**|**Uniform(0, 200)**|`r Mu1` (`r Mu1_SD`) [`r Mu1CI`] |`r Tau1` (`r Tau1_SD`) [`r Tau1CI`]|
-Normal(0, $100^2$) |Uniform(0, 200)     |`r Mu2` (`r Mu2_SD`) [`r Mu2CI`] |`r Tau2` (`r Tau2_SD`) [`r Tau2CI`]|
-Uniform(-200, 200)|Gamma(0.001, 0.001)|`r Mu3` (`r Mu3_SD`) [`r Mu3CI`] |`r Tau3` (`r Tau3_SD`) [`r Tau3CI`]|
-Normal(0, $100^2$) |Gamma(0.001, 0.001)|`r Mu4` (`r Mu4_SD`) [`r Mu4CI`] |`r Tau4` (`r Tau4_SD`) [`r Tau4CI`]|
-Uniform(-200, 200)|Normal(0, $100^2$) I(0,)|`r Mu5` (`r Mu5_SD`) [`r Mu5CI`] |`r Tau5` (`r Tau5_SD`) [`r Tau5CI`]|
-Normal(0, $100^2$) |Normal(0, $100^2$) I(0,)|`r Mu6` (`r Mu6_SD`) [`r Mu6CI`] |`r Tau6` (`r Tau6_SD`) [`r Tau6CI`]|
+Mean Difference of N+1 Preview Effects Between Alphabetical and Chinese Studies
+--------------------------------------------------------------------------------
+Measure                   | Prior on $\beta$     | Posterior $\beta$ (SD) [95% CrI]  
+------------------------- |-----------------     |---------------------------------------------|
+FFD                       |**Uniform(-200, 200)**|`r Beta1` (`r Beta1_SD`) [`r Beta1CI`]       |
+FFD                       |Normal(0, $100^2$)    |`r Beta1_2` (`r Beta1_2_SD`) [`r Beta1_2CI`] |
+SFD                       |**Uniform(-200, 200)**|`r Beta2` (`r Beta2_SD`) [`r Beta2CI`]       |
+SFD                       |Normal(0, $100^2$)    |`r Beta2_2` (`r Beta2_2_SD`) [`r Beta2_2CI`] |
+GD                        |**Uniform(-200, 200)**|`r Beta3` (`r Beta3_SD`) [`r Beta3CI`]       |
+GD                        |Normal(0, $100^2$)    |`r Beta3_2` (`r Beta3_2_SD`) [`r Beta3_2CI`] |
+FFD [unrelated word mask] |**Uniform(-200, 200)**|`r Beta4` (`r Beta4_SD`) [`r Beta4CI`]       |
+FFD [unrelated word mask] |Normal(0, $100^2$)    |`r Beta4_2` (`r Beta4_2_SD`) [`r Beta4_2CI`] |
+SFD [unrelated word mask] |**Uniform(-200, 200)**|`r Beta5` (`r Beta5_SD`) [`r Beta5CI`]       |
+SFD [unrelated word mask] |Normal(0, $100^2$)    |`r Beta5_2` (`r Beta5_2_SD`) [`r Beta5_2CI`] |
+GD [unrelated word mask]  |**Uniform(-200, 200)**|`r Beta6` (`r Beta6_SD`) [`r Beta6CI`]       |
+GD [unrelated word mask]  |Normal(0, $100^2$)    |`r Beta6_2` (`r Beta6_2_SD`) [`r Beta6_2CI`] |
+FFD [pseudo-word mask]    |**Uniform(-200, 200)**|`r Beta7` (`r Beta7_SD`) [`r Beta7CI`]       |
+FFD [pseudo-word mask]    |Normal(0, $100^2$)    |`r Beta7_2` (`r Beta7_2_SD`) [`r Beta7_2CI`] |
+GD [pseudo-word mask]     |**Uniform(-200, 200)**|`r Beta8` (`r Beta8_SD`) [`r Beta8CI`]       |
+GD [pseudo-word mask]     |Normal(0, $100^2$)    |`r Beta8_2` (`r Beta8_2_SD`) [`r Beta8_2CI`] |
 
-*Note*: For Gamma distributions, the prior is on the precision (i.e. $1/\tau^2$). The priors in bold are the ones on which the results in the paper are based. 
+*Note*: The prior in bold is the one on which the results in the paper are based. 
