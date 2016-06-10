@@ -2373,15 +2373,15 @@ png(file = 'Plots/N1_hist.png', width = 800, height = 600, units = "px")
 par(mfrow=c(2,2))
 
 hist(S40, breaks=30, col="#828282", freq=FALSE, main="All studies (FFD)",
-     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
+     xlab= "N+1 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
 
 hist(S41, breaks=30, col="#828282", freq=FALSE, main="All studies (SFD)",
-     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
+     xlab= "N+1 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
 hist(S42, breaks=30, col="#828282", freq=FALSE, main="All studies (GD)",
-     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
+     xlab= "N+1 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)  
 
 hist(S43, breaks=30, col="#828282", freq=FALSE, main="All studies (TVT)",
-     xlab= "N+2 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
+     xlab= "N+1 effect size (in ms)", cex.lab=1.4, cex.axis=1.2)    
 
 dev.off()     
 
