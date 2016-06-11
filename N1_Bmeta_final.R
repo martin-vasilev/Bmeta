@@ -888,6 +888,9 @@ autocorr.diag(M23); autocorr.plot(M23, lagmax=20); acfplot(M23) # auto-correlati
 # M1:
 M1_meanP<- sum1$statistics[1,1] # Pooled mean
 M1_MuCrI<- c(sum1$quantiles[1,1], sum1$quantiles[1,5])
+S1<-jags.samples(M1_M, variable.names='mu', n.iter=75000, thin=5, n.adapt=3000)
+S1<-c(S1$mu[1,,1],S1$mu[1,,2],S1$mu[1,,3])
+save(S1, file= "Summaries/Posterior_samples/RAN_FFD.Rda")
 
 # M2:
 M2_meanP<- sum2$statistics[1,1] # Pooled mean
