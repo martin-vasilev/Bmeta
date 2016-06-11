@@ -2,7 +2,7 @@
 title: "Model sensitivity analysis [meta-regression]"
 author: "Martin R. Vasilev"
 date: "May 18, 2016"
-output: html_document
+output: word_document
 ---
 
 ```{r, echo=FALSE}
