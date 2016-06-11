@@ -99,14 +99,14 @@ mask_heatmap<- function(){
   db$x<- factor(db$x, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
   
   qplot(x=x, y=y, data=db, fill=beta) + geom_tile()+
-    scale_fill_gradient2(limits=c(round(min(db$beta))-1, round(max(db$beta)))+1)
+    scale_fill_gradient2(limits=c(round(min(db$beta))-1, round(max(db$beta)))+1, low= "green", mid="white", high="red")
   
   ## GD plot
   db2$y<- factor(db2$y, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
   db2$x<- factor(db2$x, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
   
   qplot(x=x, y=y, data=db2, fill=beta) + geom_tile()+
-    scale_fill_gradient2(limits=c(round(min(db2$beta))-1, round(max(db2$beta)))+1)
+    scale_fill_gradient2(limits=c(round(min(db2$beta))-1, round(max(db2$beta)))+1, low= "green", mid="white", high="red")
 
 
 }
