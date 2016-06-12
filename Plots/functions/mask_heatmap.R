@@ -45,6 +45,12 @@ mask_heatmap<- function(){
                   paste(db$y[i]), " and ", paste(db$x[i]),
                   " masks for ", "FFD", sep=""))
     R<- coda.samples(MR, c('mu', 'tau', "beta"), n.iter=75000, thin=5)
+    
+    G<- gelman.diag(R, confidence=0.95)
+    if(G$psrf[1,2]>1.05){
+      stop("Model did not converge!")
+    }
+      
     sum<- summary(R);# sum
     
     beta[i]<- sum$statistics[1,1]
@@ -54,7 +60,7 @@ mask_heatmap<- function(){
     #S<-c(S$beta[1,,1],S$beta[1,,2],S$beta[1,,3])
     #ECDF<- ecdf(S); 
     #prob[i]<- 1- ECDF(0)
-    print(sprintf("%i models completed out of %i", i-1, nrow(db)))
+    print(sprintf("%i out of %i models completed", i, nrow(db)))
   }
   
   db$beta<- beta; #db$prob<- prob
@@ -75,8 +81,14 @@ mask_heatmap<- function(){
                          "heatmap.txt"), data, n.chains=3, n.adapt=3000, quiet=TRUE)
     message(paste("Creating meta-regression model for ", 
                   paste(db2$y[i]), " and ", paste(db2$x[i]),
-                  " masks for ", "FFD", sep=""))
+                  " masks for ", "GD", sep=""))
     R<- coda.samples(MR, c('mu', 'tau', "beta"), n.iter=75000, thin=5)
+    
+    G<- gelman.diag(R, confidence=0.95)
+    if(G$psrf[1,2]>1.05){
+      stop("Model did not converge!")
+    }
+    
     sum<- summary(R);# sum
     
     beta[i]<- sum$statistics[1,1]
@@ -86,27 +98,11 @@ mask_heatmap<- function(){
     #S<-c(S$beta[1,,1],S$beta[1,,2],S$beta[1,,3])
     #ECDF<- ecdf(S); 
     #prob[i]<- 1- ECDF(0)
-    print(sprintf("%i out of %i models completed", i-1, nrow(db2)))
+    print(sprintf("%i out of %i models completed", i, nrow(db2)))
   }
   
   db2$beta<- beta; #db$prob<- prob
   
   save(db2, file="Data/heat_GD.Rda")
-  
-  
-  ## FFD plot
-  db$y<- factor(db$y, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
-  db$x<- factor(db$x, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
-  
-  qplot(x=x, y=y, data=db, fill=beta) + geom_tile()+
-    scale_fill_gradient2(limits=c(round(min(db$beta))-1, round(max(db$beta)))+1, low= "green", mid="white", high="red")
-  
-  ## GD plot
-  db2$y<- factor(db2$y, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
-  db2$x<- factor(db2$x, levels = c("ORTH", "PHON", "SEM", "UNREL", "PSEUD", "RAN", "X"))
-  
-  qplot(x=x, y=y, data=db2, fill=beta) + geom_tile()+
-    scale_fill_gradient2(limits=c(round(min(db2$beta))-1, round(max(db2$beta)))+1, low= "green", mid="white", high="red")
-
 
 }
