@@ -55,15 +55,15 @@ mask_heatmap<- function(){
     
     beta[i]<- sum$statistics[1,1]
     
-    #print("Calculating probability difference is bigger than 0")
-    # S<-jags.samples(MR, variable.names='beta', n.iter=75000, thin=5, n.adapt=3000)
-    #S<-c(S$beta[1,,1],S$beta[1,,2],S$beta[1,,3])
-    #ECDF<- ecdf(S); 
-    #prob[i]<- 1- ECDF(0)
-    print(sprintf("%i out of %i models completed", i, nrow(db)))
+    print("Calculating probability difference is bigger than 0")
+     S<-jags.samples(MR, variable.names='beta', n.iter=75000, thin=5, n.adapt=3000)
+    S<-c(S$beta[1,,1],S$beta[1,,2],S$beta[1,,3])
+    ECDF<- ecdf(S); 
+    prob[i]<- 1- ECDF(0)
+    print(sprintf("%i out of %i models completed", i, nrow(db)*2))
   }
   
-  db$beta<- beta; #db$prob<- prob
+  db$beta<- beta; db$prob<- prob
   
   save(db, file="Data/heat_FFD.Rda")
   
@@ -93,15 +93,15 @@ mask_heatmap<- function(){
     
     beta[i]<- sum$statistics[1,1]
     
-    #print("Calculating probability difference is bigger than 0")
-    # S<-jags.samples(MR, variable.names='beta', n.iter=75000, thin=5, n.adapt=3000)
-    #S<-c(S$beta[1,,1],S$beta[1,,2],S$beta[1,,3])
-    #ECDF<- ecdf(S); 
-    #prob[i]<- 1- ECDF(0)
-    print(sprintf("%i out of %i models completed", i, nrow(db2)))
+    print("Calculating probability difference is bigger than 0")
+     S<-jags.samples(MR, variable.names='beta', n.iter=75000, thin=5, n.adapt=3000)
+    S<-c(S$beta[1,,1],S$beta[1,,2],S$beta[1,,3])
+    ECDF<- ecdf(S); 
+    prob[i]<- 1- ECDF(0)
+    print(sprintf("%i out of %i models completed", i+nrow(db), nrow(db2)*2))
   }
   
-  db2$beta<- beta; #db$prob<- prob
+  db2$beta<- beta; db$prob<- prob
   
   save(db2, file="Data/heat_GD.Rda")
 
