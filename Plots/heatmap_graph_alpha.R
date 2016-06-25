@@ -7,7 +7,7 @@ rm(list=ls())
 source("Plots/functions/mask_heatmap.R") # WARNING: takes long to execute
 
 #mask_heatmap() # run only to repeat analysis!!
-load("Data/heat_FFD.Rda"); load("Data/heat_GD.Rda")
+load("Data/heat_FFD_alpha.Rda"); load("Data/heat_GD_alpha.Rda")
 
 
 ################
@@ -209,11 +209,11 @@ Q4<- qplot(x=x, y=y, data=db2, fill=Probability) + theme_bw()+ geom_tile(colour=
 # save graphs #
 ###############
 
-png(file = 'Plots/heat_FFD.png', width = 800, height = 800, units = "px")
+png(file = 'Plots/heat_FFD_alpha.png', width = 800, height = 800, units = "px")
 Q1
 dev.off()
 
-png(file = 'Plots/heat_GD.png', width = 800, height = 800, units = "px")
+png(file = 'Plots/heat_GD_alpha.png', width = 800, height = 800, units = "px")
 Q2
 dev.off()
 
