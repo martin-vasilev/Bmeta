@@ -131,7 +131,6 @@ Effect[2]<-"PB"
 Boundary[2]<- 'N+2'
 Language[2]<- 'English'
 N[2]<-36
-N1len[2]<- mean(corpus2)
 
 corpus2<- c(nchar("hard"), nchar("open"), nchar("loud"), nchar("rude"), nchar("ripe"), 
             nchar("rosy"), nchar("bold"), nchar("far"), nchar("dull"), nchar("wide"), 
@@ -145,6 +144,8 @@ corpus2<- c(nchar("hard"), nchar("open"), nchar("loud"), nchar("rude"), nchar("r
             nchar("long"), nchar("bare"), nchar("cool"), nchar("fake"), nchar("flat"),
             nchar("keen"), nchar("sad"), nchar("vain"), nchar("tidy"), nchar("deaf"),
             nchar("grim"), nchar("dry"), nchar("wild"), nchar("vile"), nchar("trim"))
+
+N1len[2]<- mean(corpus2)
 
 #N
 FFD_N_val[2]<-NA; FFD_N_inval[2]<-NA  
